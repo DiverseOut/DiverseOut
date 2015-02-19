@@ -1,0 +1,73 @@
+<!-- wtf -->
+
+<div class="loading">
+  <div id="fa_spinner"  class="fa fa-spinner fa-spin"></div>
+</div>
+
+<div class="white_div"></div>
+
+<div class="background" ng-controller="MainController" ng-style="{'background-image':'url(' + bgImg + ')'}">
+   <div class="vignette"></div>
+
+    <div class="container-fluid">
+        <!-- row 1 --> 
+        <div class="row">
+            <div class="col-sm-4"><!-- .col-sm-1 -->
+                <div class="clock">
+                    <!-- <h4>{{currentUser.city}}</h4> -->
+                    <p>{{time}}</p>
+                    <h4>Local Time</h4>
+                </div>
+            </div>
+            <div class="col-sm-4"><!-- .col-sm-2 -->
+                <div class="title">
+                    <h1>{{title}}</h1>
+                    <h4>Welcome, {{currentUser['name']}}</h4>
+                    <h5>You're planning to go to {{currentUser['city']}} {{fromNow}}.</h5>
+                </div>
+            </div>
+            <div class="col-sm-4"><!-- .col-sm-3 -->
+                <div class="weather">
+                   <!--  <p>{{weather['name']}}</p> -->
+
+                    <p>{{farenheit(weather.main.temp)}} °F<img src="http://openweathermap.org/img/w/{{weather['weather'][0]['icon']}}.png"></p>
+                    <!-- <h4>{{weather.weather[0].main}}</h4> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- row 2 -->
+        <div class="row">
+          <div class="col-sm-4"><!-- .col-sm-4 --></div>
+          <div class="col-sm-4"><!-- .col-sm-5 --></div>
+          <div class="col-sm-4"><!-- .col-sm-6 --></div>
+        </div>
+
+        <!-- row 3 -->
+        <div class="row">
+          <div class="col-sm-4">
+            <span class="logout"><p ng-click="logout()">logout</p></span></div>
+          <div class="col-sm-4">
+            <div class="line-clamp">
+              <a ng-show="!withinTwoMonths" href="http://en.wikipedia.org/wiki/{{currentUser.city}}">
+              <p ng-bind-html="wiki_data"></p>
+               <!-- {{wiki_data}} -->
+             </a>
+              <div ng-show="withinTwoMonths">
+                  <h2 ng-show="eventList.length !== 0">Upcoming Events in {{currentUser['city']}}</h2>
+                  <div ng-repeat="obj in eventList">
+                    <p><a href="{{obj.url}}" target="_blank">{{obj.title}}</a></p>
+                  </div>
+              </div>
+            </div>
+
+            <div class="modal"></div>
+
+          </div>
+          <div class="col-sm-4"><span class="logo"><h4>NomadR</h4></span></div>
+            <a href={{imgOwnerUrl}} class="attribution">{{titleImg}}, by {{ownerImg}}</a>
+        </div>
+    </div>
+</div>
+</div>
+</div>
