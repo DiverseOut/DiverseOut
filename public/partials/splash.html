@@ -1,18 +1,9 @@
-<div class="background-splash" ng-style="{'background-image':'url({{background}})'}" ng-controller="SplashController">
+<div ng-controller="SplashController">
 
-<div class="vignette"></div>
-    <span class="welcome"><h2>Welcome to</h2></span>
+  <h3>Companies</h3>
+  <p>Search for companies:</p>
+  <input type="text" class="form-control" ng-model="searchInput">
 
-    <div class="logo">
-      <h1>{{title}}</h1>
-    </div>
+  <p ng-repeat="company in companies | filter:searchInput"><a href=''>{{company.name}}</a></p>
 
-    <a href="#/signin">
-    <div class="splash_button_signin">Sign In</div></a>
-
-    <a href="#/signup">
-    <div class="splash_button_signup">
-      Sign Up
-    </div>
-  </a>
 </div>
