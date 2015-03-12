@@ -11,12 +11,14 @@
 <body ng-app="ourApp">
     <section id="header">
         <div class='navbar'>
-            <h1>DiverseOut</h1>
-            <p>Company Login</p>
+            <h1><a href='#/'>DiverseOut</a></h1>
+            <p><a href='#/signin_signup'>Company Login</a></p>
         </div>
     </section>
 
     <div ng-view></div>
+
+<!--     // <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script> -->
 
     <!-- VENDOR -->
     <script src="vendor/jquery.js"></script>
@@ -30,8 +32,7 @@
     <!-- CUSTOM -->
     <script src="controllers/init.js"></script>
     <script src="controllers/splash.ctrl.js"></script>
-    <script src="controllers/signup.ctrl.js"></script>
-    <script src="controllers/signin.ctrl.js"></script>
+    <script src="controllers/signin_signup.ctrl.js"></script>
     <script src="controllers/main.ctrl.js"></script>
 </body>
 </html>
