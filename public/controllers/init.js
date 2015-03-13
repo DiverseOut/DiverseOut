@@ -1,17 +1,21 @@
 var ourApp = angular.module('ourApp', ['ngSanitize', 'ngRoute', 'ngCookies'])
 
-ourApp.config(['$httpProvider', function($httpProvider) {
-  //Enable cross domain calls
-  $httpProvider.defaults.useXDomain = true;
+// ourApp.config(['$httpProvider', function($httpProvider){
+//   //Enable cross domain calls
+//   $httpProvider.defaults.useXDomain = true;
 
-  //Remove the header used to identify ajax call  that would prevent CORS from working
-  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+//   //Remove the header used to identify ajax call  that would prevent CORS from working
+//   delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
-  }
-]);
+//   }
+// ]);
 
-ourApp.config(['$routeProvider',
-  function($routeProvider) {
+ourApp.config(['$routeProvider', '$httpProvider',
+  function($routeProvider, $httpProvider) {
+
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common["X-Requested-With"];
+
     $routeProvider.
       when('/', {
         templateUrl: '../partials/splash.html',

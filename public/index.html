@@ -8,11 +8,12 @@
     <link rel="stylesheet" type="text/css" href="vendor/font-awesome.min.css">
 </head>
 
-<body ng-app="ourApp">
+<body ng-app="ourApp" ng-controller="MainController">
     <section id="header">
         <div class='navbar'>
             <h1><a href='#/'>DiverseOut</a></h1>
-            <p><a href='#/signin_signup'>Company Login</a></p>
+            <p ng-show="!loggedInUser"><a href='#/signin_signup'>Company Login</a></p>
+            <p ng-show="loggedInUser"><a href="" ng-click="logout()">Logout</a></p>
         </div>
     </section>
 
