@@ -3,6 +3,7 @@ ourApp.controller("MainController", ['$scope', '$http', '$route','$cookies', '$l
     console.log("COOKIE: "+$cookies.user_id)
 
     $scope.loggedInUser = $cookies.user_id
+    // console.log($scope.loggedInUser)
 
     $scope.logout = function(){
         delete $cookies.user_id

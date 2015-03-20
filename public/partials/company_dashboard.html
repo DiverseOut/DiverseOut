@@ -1,39 +1,15 @@
 <div ng-controller="CompanyDashboardController">
 
-  <section ng-show="companyExists">
-    <h4>Your company info:</h4>
-    <p><a href="">Edit company info</a></p>
-  </section>
+  <h4>{{company.name}}</h4><img ng-src="{{company.thumbnail_url}}">
+  <p>{{company.city}}, {{company.state}}</p>
 
-  <section ng-show="companyExists">
-    <h4>Your past surveys:</h4>
-  </section>
+  <div ng-show="surveys.length > 0">
+    <h4>Your Company's Past Surveys:</h4>
+    <ul ng-repeat="survey in surveys" class="list-group">
+      <li class="list-group-item"><a ng-href="">{{survey.created_at}}</a></li>
+    </ul>
+  </div>
 
-  <section ng-show="companyExists">
-    <h4>Enter your company's information:</h4>
-
-    <p>{{companyExists}}</p>
-
-    <form class="signin-form" ng-submit="createCompany()" name="signInForm">
-
-      <input type="company_name" placeholder="Company Name" name="name" required>
-      <br>
-      <input type="street_num" placeholder="Street Number" name="street_num" required>
-      <br>
-      <input type="street_num_line_2" placeholder="Street Number Line Two (optional)" name="street_num_line_2">
-      <br>
-      <input type="street" placeholder="Street Name" name="street" required>
-      <br>
-      <input type="city" placeholder="City" name="city" required>
-      <br>
-      <input type="country" placeholder="Country" name="country" required>
-      <br>
-      <input type="website_url" placeholder="Website URL" name="website_url" required>
-      <br>
-
-      <input type="submit" value="Submit" ng-disabled="signInForm.$invalid">
-
-    </form>
-  </section>
+  <p><a ng-href="#/create_survey/{{companyId}}">Create New Survey</a></p>
 
 </div>
