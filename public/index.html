@@ -1,4 +1,4 @@
-<html>
+<html ng-app="ourApp">
 <head lang="en">
     <meta charset="UTF-8">
     <title>DiverseOut</title>
@@ -8,32 +8,34 @@
     <link rel="stylesheet" type="text/css" href="vendor/font-awesome.min.css">
 </head>
 
-<body ng-app="ourApp" ng-controller="MainController">
-    <section id="header">
+<body>
+    <section ng-controller="MainController" id="header">
         <div class='navbar'>
-            <h1><a href='#/'>DiverseOut</a></h1>
-            <p ng-show="!loggedInUser"><a href='#/signin_signup'>Company Login</a></p>
-            <p ng-show="loggedInUser"><a href="" ng-click="logout()">Logout</a></p>
+            <h1><a href='#/'></a></h1>
+            <p ng-show="loggedInUser == undefined"><a href='#/signin'>Company Login</a></p>
+            <p ng-show="loggedInUser !== undefined"><a href="" ng-click="logout()">Logout</a></p>
         </div>
     </section>
 
     <div ng-view></div>
 
-<!--     // <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script> -->
-
     <!-- VENDOR -->
+    <script src="vendor/angular.js"></script>
     <script src="vendor/jquery.js"></script>
     <script src="vendor/bootstrap.js"></script>
-    <script src="vendor/angular.js"></script>
     <script src="vendor/angular-sanitize.js"></script>
     <script src="vendor/angular-route.js"></script>
     <script src="vendor/angular-cookies.js"></script>
     <script src="vendor/moment.js"></script>
+    <script src="vendor/sha1.js"></script>
 
     <!-- CUSTOM -->
     <script src="controllers/init.js"></script>
     <script src="controllers/splash.ctrl.js"></script>
     <script src="controllers/signin_signup.ctrl.js"></script>
+    <script src="controllers/company_dashboard.ctrl.js"></script>
+    <script src="controllers/create_company.ctrl.js"></script>
+    <script src="controllers/create_survey.ctrl.js"></script>
     <script src="controllers/main.ctrl.js"></script>
 </body>
 </html>

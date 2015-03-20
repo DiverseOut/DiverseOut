@@ -1,18 +1,14 @@
-ourApp.controller("CompanyDashboardController", ['$scope', '$http', '$cookies', '$location', function($scope, $http, $cookies, $location){
+ourApp.controller("CompanyDashboardController", ['$scope', '$http', '$route', '$cookies', '$location', '$routeParams', function($scope, $http, $route, $cookies, $location, $routeParams){
 
-   $scope.companyExists = true // if Admin record in DB has company associated with it
+    $scope.companyId = $routeParams.company_id
 
-  // GET ADMIN INFO:
-  $http.get("http://localhost:9393/admins/", {id: $cookies.user_id}).success(function(response){
-    console.log(response)
-  })
-
-
-
-  // POST NEW COMPANY WITH & UPDATE ADMIN'S COMPANY_ID IN SAME FUNCTION (1 FUNCTION WITH 2 POSTS)
-
-  // GET COMPANY INFO (TO BE ABLE TO EDIT)
-
-  // PUT (UPDATE) COMPANY INFO
+    $http({
+      method: 'GET',
+      url: 'http://localhost:9393/companies/'+$scope.companyId,
+    }).success(function(response){
+      console.log(response)
+      $scope.company = response.company
+      $scope.surveys = response.surveys
+    })
 
 }]);

@@ -21,16 +21,28 @@ ourApp.config(['$routeProvider', '$httpProvider',
         templateUrl: '../partials/splash.html',
         // controller: 'SplashController'
       }).
-      when('/signin_signup', {
-        templateUrl: '../partials/signin_signup.html',
+      when('/signin', {
+        templateUrl: '../partials/signin.html',
+        // controller: 'SigninSignupController'
+      }).
+      when('/signup', {
+        templateUrl: '../partials/signup.html',
         // controller: 'SigninSignupController'
       }).
       when('/home', {
         templateUrl: '../partials/home.html',
         // controller: 'MainController'
       }).
-      when('/company_dashboard', {
+      when('/company_dashboard/:company_id', {
         templateUrl: '../partials/company_dashboard.html',
+        // controller: 'CompanyDashboardController'
+      }).
+      when('/create_company', {
+        templateUrl: '../partials/create_company.html',
+        // controller: 'CompanyDashboardController'
+      }).
+      when('/create_survey/:company_id', {
+        templateUrl: '../partials/create_survey.html',
         // controller: 'CompanyDashboardController'
       }).
       otherwise({

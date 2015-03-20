@@ -1,0 +1,26 @@
+<div ng-controller="CreateCompanyController">
+    <h4>Create Your Company</h4>
+
+    <form ng-submit="" name="createCompanyForm" class="input-group">
+
+        <input class="form-control" type="name" placeholder="Company Name" name="name" required>
+        <br>
+        <input class="form-control" type="street_num" placeholder="Address" name="street_num" required>
+        <br>
+        <input class="form-control" type="street_num" placeholder="Address (line 2)" name="street_num" required>
+        <br>
+        <input class="form-control" type="street" placeholder="Street" name="street" required>
+        <br>
+        <input class="form-control" type="city" placeholder="City" name="city" required>
+        <br>
+        <input class="form-control" type="state" placeholder="State" name="state" required>
+        <br>
+        <input class="form-control" type="country" placeholder="Country" name="country" required>
+        <br>
+        <input class="form-control" type="website_url" placeholder="Website URL" name="website_url" required>
+        <br>
+        <input class="form-control" type="thumbnail_url" placeholder="Thumbnail URL" name="thumbnail_url" required>
+        <br>
+        <input class="form-control" type="submit" value="Submit" ng-disabled="signInForm.$invalid">
+      </form>
+</div>

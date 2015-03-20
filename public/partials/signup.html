@@ -1,0 +1,21 @@
+<div ng-controller="SignInSignUpController" class="input-group">
+
+    <h4>Sign Up</h4>
+    <h5>To Create Your Company's Profile</h5>
+    <form ng-submit="signUp()" name="signInForm">
+
+      <input class="form-control" type="first_name" placeholder="First Name" name="first_name" ng-model="signin.first_name" required>
+      <br>
+      <input class="form-control" type="last_name" placeholder="Last Name" name="last_name" ng-model="signin.last_name" required>
+      <br>
+      <input class="form-control" type="job_title" placeholder="Job Title" name="job_title" ng-model="signin.job_title" required>
+      <br>
+      <input class="form-control" type="email" placeholder="Email" name="email" ng-model="signin.email" required>
+      <br>
+      <input class="form-control" type="password" placeholder="Password" name="password" ng-model="signin.password" required>
+      <br>
+      <input class="form-control" type="submit" value="Submit" ng-disabled="signInForm.$invalid">
+    </form>
+    <p><a href='#/signin'>Sign in</a></p>
+
+</div>

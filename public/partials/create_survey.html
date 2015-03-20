@@ -1,0 +1,24 @@
+<!-- show all input groups and have check bubbles so they can check the questions they want to ask. -->
+
+<div ng-controller="CreateSurveyController">
+
+  <form>
+    <h4>Choose Questions</h4>
+    <h5>Select questions to include in your survey. Click each bar to show individual attribute options</h5>
+    <ul ng-repeat="group in attributeGroups" class="list-group">
+
+      <li class="list-group-item" style="background-color:gainsboro" class="group_title" ng-click="showDetails = ! showDetails">
+
+        <input type="checkbox"><h4>{{group.group.group_name}}</h4></input>
+
+        <p class="list-group-item" ng-show="showDetails" ng-repeat="attribute in group.individual_attributes">{{attribute.attribute_name}}</p>
+
+      </li>
+
+    </ul>
+
+    <input class="form-control" type="submit" value="Submit">
+
+  </form>
+
+</div>
