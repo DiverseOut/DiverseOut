@@ -29,6 +29,14 @@
   position: absolute;
 }
 
+.login {
+
+}
+
+.logout {
+  display: none
+}
+
 /*
 #signin_signout {
   border:1px solid black;
