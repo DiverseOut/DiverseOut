@@ -31,6 +31,7 @@ ourApp.controller("SignInSignUpController", ['$scope', '$http', '$route', '$cook
               $cookies.user_id = response.id;
               if (typeof response.company_id == "number") {
                 console.log("dash")
+                $cookies.company_id = response.company_id
                 $location.path('/company_dashboard/'+response.company_id)
               } else {
                 console.log("create")
@@ -65,6 +66,7 @@ ourApp.controller("SignInSignUpController", ['$scope', '$http', '$route', '$cook
               $cookies.user_id = response.id;
               if (typeof response.company_id == "number") {
                 console.log("dash")
+                $cookies.company_id = response.company_id
                 $location.path('/company_dashboard/'+response.company_id)
               } else {
                 console.log("create")

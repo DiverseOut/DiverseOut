@@ -1,7 +1,6 @@
 ourApp.controller("CreateSurveyController", ['$scope', '$http', '$route', '$cookies', '$location', '$routeParams', function($scope, $http, $route, $cookies, $location, $routeParams){
 
   $scope.companyId = $routeParams.company_id
-
   console.log($scope.companyId)
 
   $http({
@@ -12,6 +11,8 @@ ourApp.controller("CreateSurveyController", ['$scope', '$http', '$route', '$cook
     $scope.attributeGroups = response
   })
 
-  // Get all attribute groups to display them
+  $scope.createSurvey = function(){
+    console.log("hey")
+  }
 
-  }]);
+}]);
