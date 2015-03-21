@@ -21,13 +21,32 @@
 }
 
 .navbar p {
-  float:right;
-  padding:0;
-  margin:0;
-  bottom: 5px;
-  right: 5px;
-  position: absolute;
+  float: right;
+  padding-left: 30px;
+  position: relative;
+  display: inline-block;
+  bottom: -23px;
 }
+
+.login {
+
+}
+
+.logout {
+  display: none
+}
+
+/*.list-group {
+  width:300px;
+}*/
+
+input[type=checkbox] {
+  /* All browsers except webkit*/
+  transform: scale(1.5);
+  /* Webkit browsers*/
+  -webkit-transform: scale(1.5);
+}
+
 
 /*
 #signin_signout {

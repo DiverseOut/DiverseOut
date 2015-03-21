@@ -1,8 +1,6 @@
 ourApp.controller("CreateSurveyController", ['$scope', '$http', '$route', '$cookies', '$location', '$routeParams', function($scope, $http, $route, $cookies, $location, $routeParams){
 
-  $scope.companyId = $routeParams.company_id
-
-  console.log($scope.companyId)
+  $scope.companyId = parseInt($routeParams.company_id)
 
   $http({
     method: "GET",
@@ -12,6 +10,28 @@ ourApp.controller("CreateSurveyController", ['$scope', '$http', '$route', '$cook
     $scope.attributeGroups = response
   })
 
-  // Get all attribute groups to display them
+  var getVals = function(){
+    var attributeGroups = []
+    var checkboxArr = $('input[type=checkbox]:checked')
+    for (var i=0;i<checkboxArr.length;i++){
+      var value = parseInt($(checkboxArr[i]).val())
+      attributeGroups.push(value)
+    }
+    return attributeGroups
+  }
 
-  }]);
+  $scope.createSurvey = function(){
+    var surveyDetails = {
+      company_id:       $scope.companyId,
+      attribute_groups: getVals()
+    }
+    $http({
+      method: 'POST',
+      url: 'http://localhost:9393/admins/'+$cookies.user_id+'/companies/'+$cookies.company_id+'/surveys',
+      params: surveyDetails
+    }).success(function(response){
+      console.log(response)
+    })
+  }
+
+}]);
