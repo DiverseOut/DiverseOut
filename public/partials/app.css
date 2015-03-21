@@ -36,9 +36,9 @@
   display: none
 }
 
-.list-group {
+/*.list-group {
   width:300px;
-}
+}*/
 
 input[type=checkbox] {
   /* All browsers except webkit*/
@@ -46,6 +46,7 @@ input[type=checkbox] {
   /* Webkit browsers*/
   -webkit-transform: scale(1.5);
 }
+
 
 /*
 #signin_signout {
