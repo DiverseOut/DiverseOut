@@ -31,6 +31,7 @@ ourApp.controller("CreateSurveyController", ['$scope', '$http', '$route', '$cook
       params: surveyDetails
     }).success(function(response){
       console.log(response)
+
     })
   }
 

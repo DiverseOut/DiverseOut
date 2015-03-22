@@ -1,0 +1,12 @@
+<div ng-controller="ShowSurveyController">
+
+  <ul ng-repeat="survey in surveyInfo" class="list-group">
+    <li class="list-group-item">
+      {{survey.group.group_name}}
+    </li>
+      <ul>
+        <li class="list-group-item" ng-repeat="attribute in survey.individual_attributes" ng-value="{{attribute.id}}" >{{attribute.attribute_name}}</li>
+      </ul>
+  </ul>
+
+</div>
