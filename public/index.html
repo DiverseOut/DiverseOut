@@ -13,7 +13,7 @@
         <div class='navbar'>
             <h1><a href='#/'>DiverseOut</a></h1>
             <p ng-show="!loggedInUser"><a href='#/signin'>Company Login</a></p>
-            <p ng-show="loggedInUser"><a ng-href='#/company_dashboard/{{}}'>Company Dashboard</a></p>
+            <p ng-show="loggedInUser"><a ng-href='#/company_dashboard/{{companyId}}'>Company Dashboard</a></p>
             <!-- ADD COMPANY DASHBOARD LINK (FIGURE OUT HOW TO ROUTE HERE) -->
             <p ng-show="loggedInUser"><a href="" ng-click="logout()">Logout</a></p>
         </div>
@@ -38,6 +38,7 @@
     <script src="controllers/company_dashboard.ctrl.js"></script>
     <script src="controllers/create_company.ctrl.js"></script>
     <script src="controllers/create_survey.ctrl.js"></script>
+    <script src="controllers/survey.ctrl.js"></script>
     <script src="controllers/main.ctrl.js"></script>
 </body>
 </html>

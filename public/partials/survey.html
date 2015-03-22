@@ -1,0 +1,19 @@
+<div ng-controller="ShowSurveyController">
+
+<!--   <form ng-submit="getVals()">
+ -->    <ul ng-repeat="survey in surveyInfo" class="list-group">
+      <li class="list-group-item">
+        <h4>{{survey.group.group_name}}</h4>
+        <select class="form-control">
+            <option ng-repeat="attribute in survey.individual_attributes" ng-value="{{attribute.id}}">{{attribute.attribute_name}}</option>
+        </select>
+      </li>
+  <!--
+        <ul>
+          <li class="list-group-item" ng-repeat="attribute in survey.individual_attributes" ng-value="{{attribute.id}}" ng-click="check()">{{attribute.attribute_name}}</li>
+        </ul> -->
+    </ul>
+<!--     <input class="form-control" type="submit" value="Submit"> -->
+<!--   </form>
+ -->
+</div>
