@@ -9,17 +9,23 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
     method: 'GET',
     url: 'http://localhost:9393/companies/'+$scope.companyId+'/surveys/'+$scope.surveyId,
   }).success(function(response){
+    console.log(response)
     $scope.surveyInfo = response
   })
 
-  var getVals = function(){
+  $scope.getVals = function(){
     var attributeGroups = []
     var selectedArr = $('option:selected')
     for (var i=0;i<selectedArr.length;i++){
       var value = parseInt($(selectedArr[i]).val())
-      attributeGroups.push(value)
+      // attributeGroups.push({
+      //   company_id: $scope.companyId
+      //   employee_type_id:
+      //   attribute_id: value
+      // })
     }
     postResponses(attributeGroups)
+    console.log("in getVals")
   }
 
 // create multiple responses on each check
