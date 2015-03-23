@@ -2,13 +2,14 @@
 
 <div ng-controller="CreateSurveyController">
 
-  <form ng-submit="createSurvey()">
+  <form ng-submit="getVals()">
     <h4>Choose Questions</h4>
     <h5>Select questions to include in your survey. Click each bar to show individual attribute options</h5>
     <ul ng-repeat="group in attributeGroups" class="list-group">
       <input type="checkbox" ng-value="{{group.group.id}}" />
       <li class="list-group-item" style="background-color:gainsboro" class="group_title" ng-click="showDetails = ! showDetails">
-        {{group.group.group_name}}
+        <h4>{{group.group.group_name}}</h4>
+        <p>(Click to view options)</p>
       </li>
         <ul>
           <li class="list-group-item" ng-show="showDetails" ng-repeat="attribute in group.individual_attributes">{{attribute.attribute_name}}</li>
