@@ -5,4 +5,4 @@ DiverseOut spreads the release of tech companies' diversity data. View aggregate
 
 ##### The DiverseOut front-end is built using Angular.js and Bootstrap.
 
-![schema](DiverseOut.png)
+![DiverseOut](DiverseOut.png)
