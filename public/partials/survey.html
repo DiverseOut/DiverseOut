@@ -2,8 +2,11 @@
 
   <form ng-submit="getVals()">
     <h4>Select Employee Type</h4>
-      <input ng-repeat="type in surveyInfo.employee_types" type="checkbox">{{type.type_name}}</input>
-    <ul ng-repeat="survey in surveyInfo" class="list-group">
+      <span ng-repeat="type in surveyInfo.employee_types">
+      <input type="checkbox" ng-value="{{type.id}}"><p>{{type.type_name}}</p>
+    </span>
+
+    <ul ng-repeat="survey in surveyInfo.attribute_groups" class="list-group">
       <li class="list-group-item">
         <h4>{{survey.group.group_name}}</h4>
         <select class="form-control">

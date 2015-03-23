@@ -3,8 +3,6 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
   $scope.companyId = parseInt($routeParams.company_id)
   $scope.surveyId = parseInt($routeParams.survey_id)
 
-  $scope.postSuccessArr = []
-
   $http({
     method: 'GET',
     url: 'http://localhost:9393/companies/'+$scope.companyId+'/surveys/'+$scope.surveyId,
@@ -14,23 +12,38 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
   })
 
   $scope.getVals = function(){
+    // REFACTOR so I can use same function to get vals for 'option' and 'input'?
+    var getEmployeeVals = function(arr){
+      var arrToReturn = []
+      for (var i=0;i<arr.length;i++){
+        var value = parseInt($(arr[i]).val())
+        arrToReturn.push(value)
+      }
+      return arrToReturn
+    }
+
+    var employeeTypes = $('input[type=checkbox]:checked')
+
+    var employees = getEmployeeVals(employeeTypes)
+
     var attributeGroups = []
     var selectedArr = $('option:selected')
     for (var i=0;i<selectedArr.length;i++){
       var value = parseInt($(selectedArr[i]).val())
-      // attributeGroups.push({
-      //   company_id: $scope.companyId
-      //   employee_type_id:
-      //   attribute_id: value
-      // })
+      attributeGroups.push({
+        company_id: $scope.companyId,
+        attribute_id: value,
+        employee_types: angular.toJson(employees)
+      })
     }
     postResponses(attributeGroups)
-    console.log("in getVals")
   }
 
 // create multiple responses on each check
 
   var postResponses = function(responseArr){
+
+    var postSuccessArr = []
 
     function httpPost(param){
       $http({
@@ -46,9 +59,8 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
       httpPost(responseArr[i])
     }
 
-    console.log($scope.postSuccessArr)
+    // console.log(postSuccessArr)
 
   }
-
 
 }]);
