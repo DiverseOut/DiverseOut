@@ -12,7 +12,11 @@ ourApp.controller("MainController", ['$scope', '$http', '$route','$cookies', '$l
     }
 
     $scope.companyDashboard = function(){
-      $location.path('/company_dashboard')
+      if($cookies.company_id){
+        $location.path('/company_dashboard')
+      } else {
+
+      }
     }
 
 }]);

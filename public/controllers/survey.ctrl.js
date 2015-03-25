@@ -11,7 +11,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
     $scope.surveyInfo = response
   })
 
-// Function too long! Refactor
+// Function too long! Refactor. Also, put secret key form in here!!
   $scope.getVals = function(){
     var getSelectedVals = function(arr){
       var arrToReturn = []
@@ -23,20 +23,25 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
     }
 
     var postResponses = function(responseArr){
-      var postSuccessArr = []
+      var postStatusArr = []
       function httpPost(param){
         $http({
           method: 'POST',
           url: 'http://localhost:9393/companies/'+$scope.companyId+'/responses',
           params: param
         }).success(function(response){
-          postSuccessArr.push(response)
+          postStatusArr.push(response)
         })
       }
-      for (i=0;i<responseArr.length;i++){
-        httpPost(responseArr[i])
+      function loopPosts(callback){
+        for (i=0;i<responseArr.length;i++){
+          httpPost(responseArr[i])
+        }
+        callback()
       }
-      // console.log(postSuccessArr)
+      loopPosts(function(){console.log("hey")})
+      // Add logic here to only redirect if all posts are successful
+      $location.path('/company_stats/'+$scope.companyId)
     }
 
     var makeObjsToPost = function(arr){
