@@ -1,7 +1,7 @@
 ourApp.controller("CreateSurveyController", ['$scope', '$http', '$route', '$cookies', '$location', '$routeParams', function($scope, $http, $route, $cookies, $location, $routeParams){
 
   $scope.companyId = parseInt($routeParams.company_id)
-  $scope.groupsToSend
+  // $scope.groupsToSend
 
   $http({
     method: 'GET',
@@ -23,7 +23,7 @@ ourApp.controller("CreateSurveyController", ['$scope', '$http', '$route', '$cook
   var createSurvey = function(groups){
     var surveyDetails = {
       company_id:       $scope.companyId,
-      attribute_groups: groups
+      attribute_groups: angular.toJson(groups)
     }
     $http({
       method: 'POST',

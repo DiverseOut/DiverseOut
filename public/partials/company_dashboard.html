@@ -7,7 +7,11 @@
   <div ng-show="surveys.length > 0">
     <h4>Your Company's Past Surveys:</h4>
     <ul ng-repeat="survey in surveys" class="list-group">
-      <li class="list-group-item"><a ng-href="#/companies/{{company.id}}/surveys/{{survey.id}}">{{survey.id}}. {{readableDate(survey.created_at)}}</a><br>
+      <li class="list-group-item">
+
+        <p>Date Created:</p>
+        <h5><a ng-href="#/companies/{{company.id}}/surveys/{{survey.id}}">
+        {{readableDate(survey.created_at)}}</h5></p><br>
       <a ng-href="">Edit Survey</a>
       </li>
     </ul>
