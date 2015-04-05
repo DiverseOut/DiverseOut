@@ -50,8 +50,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
           jQuery.ajax({
             type: 'POST',
             url: 'http://localhost:3000/companies/'+$scope.companyId+'/responses',
-            data: parameters,
-            traditional: true
+            data: parameters
             // processData: false
           }).done(function(response){
             console.log("Post success!")
