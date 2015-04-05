@@ -5,7 +5,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
 
   $http({
     method: 'GET',
-    url: 'http://localhost:9393/companies/'+$scope.companyId+'/surveys/'+$scope.surveyId,
+    url: 'http://localhost:3000/companies/'+$scope.companyId+'/surveys/'+$scope.surveyId,
   }).success(function(response){
     console.log(response)
     $scope.surveyInfo = response
@@ -27,7 +27,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
       function httpPost(param){
         $http({
           method: 'POST',
-          url: 'http://localhost:9393/companies/'+$scope.companyId+'/responses',
+          url: 'http://localhost:3000/companies/'+$scope.companyId+'/responses',
           params: param
         }).success(function(response){
           postStatusArr.push(response)
