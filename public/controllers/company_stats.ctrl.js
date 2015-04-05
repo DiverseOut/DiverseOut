@@ -7,8 +7,7 @@ ourApp.controller("CompanyStatsController", ['$scope', '$http', '$route', '$cook
     url: "http://localhost:3000/companies/"+$scope.companyId+"/responses"
   }).success(function(response){
     console.log(response)
-    $scope.totalEmployees = response.company_total_employees
-    $scope.totalResponses = response.comapny_total_responses
+    $scope.companyInfo = response.company_info
     $scope.companyStats = response.response_stats
   })
 
