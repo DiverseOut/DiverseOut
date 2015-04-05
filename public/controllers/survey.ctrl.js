@@ -9,6 +9,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
     url: 'http://localhost:3000/companies/'+$scope.companyId+'/surveys/'+$scope.surveyId,
   }).success(function(response){
 
+    // surveyInfo is used to populate DOM; see partials/survey.html
     $scope.surveyInfo = response
 
     // following function is called on form submit
@@ -33,7 +34,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
       return returnArray
     };
 
-    // declaring (but not defining) these in the closure
+    // declaring (but not defining) employees and attributes
     // such that they can be modified later
 
     var employees
@@ -41,6 +42,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
 
     return {
 
+      // TODO: the following function is ugly af
       postResponses: function(){
         var postStatusArr = []
 
@@ -50,13 +52,11 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
             type: 'POST',
             url: 'http://localhost:3000/companies/'+$scope.companyId+'/responses',
             data: parameters
-            // processData: false
           }).done(function(response){
             console.log("Post success!")
             postStatusArr.push(response)
           }).fail(function(error) {
-            // TODO: error handling
-            // debugger
+            // TODO: better error handling
             console.log("Post fail!")
             postStatusArr.push(error)
           })
@@ -68,6 +68,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
           }
         }
 
+        // makes a separate $.ajax call for each field in the form
         loopPosts()
 
         // TODO: Add logic here to only redirect if all posts are successful
@@ -98,5 +99,4 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
       }
     }
   }();
-
 }]);
