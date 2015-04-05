@@ -4,7 +4,7 @@ ourApp.controller("CompanyStatsController", ['$scope', '$http', '$route', '$cook
 
   $http({
     method: "GET",
-    url: "http://localhost:9393/companies/"+$scope.companyId+"/responses"
+    url: "http://localhost:3000/companies/"+$scope.companyId+"/responses"
   }).success(function(response){
     console.log(response)
     $scope.totalEmployees = response.company_total_employees
