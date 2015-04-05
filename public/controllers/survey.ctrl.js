@@ -40,16 +40,18 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
       postResponses: function(){
         var postStatusArr = []
 
-        function httpPost(param){
-          $http({
+        function httpPost(parameters){
+          debugger
+          jQuery.ajax({
             method: 'POST',
             url: 'http://localhost:3000/companies/'+$scope.companyId+'/responses',
-            params: param
+            data: parameters
           }).success(function(response){
             console.log("Post success!")
             postStatusArr.push(response)
-          }).error(function(error) {
+          }).fail(function(error) {
             // TODO: error handling
+            // debugger
             console.log("Post fail!")
             postStatusArr.push(error)
           })
@@ -62,7 +64,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
           }
           // callback()
           // debugger
-          console.log(attributes)
+          // console.log(attributes)
         }
 
         loopPosts()
@@ -71,7 +73,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
       },
 
       makeObjsToPost: function(){
-        console.log(attributes)
+        // console.log(attributes)
 
         var deferred = new $.Deferred()
 
@@ -80,10 +82,14 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
           objsToPost.push({
             company_id: $scope.companyId,
             attribute_id: attributes[i],
-            employee_types: angular.toJson(employees)
+            // 'employee_types': angular.toJson(employees)
+            employee_types: employees //PROBLEM IS HERE DOGG
           })
         }
+        console.log(objsToPost)
         attributes = objsToPost;
+        // console.log(attributes)
+        // debugger
 
         deferred.resolve();
         return deferred.promise();
