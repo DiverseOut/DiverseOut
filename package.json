@@ -1,5 +1,9 @@
 {
     "name": "simpleAPI",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/DiverseOut/DiverseOut_Client.git"
+    },
     "main": "server.js",
     "dependencies": {
         "express": "~4.0.0",
