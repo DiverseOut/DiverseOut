@@ -1,5 +1,6 @@
 ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookies', '$location', '$routeParams', function($scope, $http, $route, $cookies, $location, $routeParams){
 
+
   $scope.companyId = parseInt($routeParams.company_id)
   $scope.surveyId = parseInt($routeParams.survey_id)
 
@@ -7,59 +8,95 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
     method: 'GET',
     url: 'http://localhost:3000/companies/'+$scope.companyId+'/surveys/'+$scope.surveyId,
   }).success(function(response){
-    console.log(response)
+
+    // surveyInfo is used to populate DOM; see partials/survey.html
     $scope.surveyInfo = response
+
+    // following function is called on form submit
+    $scope.getVals = function(){
+      submitForm.makeObjsToPost().then(submitForm.postResponses());
+    }
   })
 
-// Function too long! Refactor. Also, put secret key form in here!!
-  $scope.getVals = function(){
-    var getSelectedVals = function(arr){
-      var arrToReturn = []
-      for (var i=0;i<arr.length;i++){
-        var value = parseInt($(arr[i]).val())
-        arrToReturn.push(value)
-      }
-      return arrToReturn
-    }
+// our iife! so proud.
+  var submitForm = function(){
 
-    var postResponses = function(responseArr){
-      var postStatusArr = []
-      function httpPost(param){
-        $http({
-          method: 'POST',
-          url: 'http://localhost:3000/companies/'+$scope.companyId+'/responses',
-          params: param
-        }).success(function(response){
-          postStatusArr.push(response)
-        })
+    // Closure values:
+    var getValuesOfSelectedAttributes = function(arr){
+      // arr is not an array but a jQuery object.
+      // As such, we have to create returnArray explicitly as an array
+      returnArray = []
+
+      for (var i=0;i<arr.length;i++){
+        returnArray[i] = parseInt($(arr[i]).val())
       }
-      function loopPosts(callback){
-        for (i=0;i<responseArr.length;i++){
-          httpPost(responseArr[i])
+
+      return returnArray
+    };
+
+    // declaring (but not defining) employees and attributes
+    // such that they can be modified later
+
+    var employees
+    var attributes
+
+    return {
+
+      // TODO: the following function is ugly af
+      postResponses: function(){
+        var postStatusArr = []
+
+        function httpPost(parameters){
+          // debugger
+          jQuery.ajax({
+            type: 'POST',
+            url: 'http://localhost:3000/companies/'+$scope.companyId+'/responses',
+            data: parameters
+          }).done(function(response){
+            console.log("Post success!")
+            postStatusArr.push(response)
+          }).fail(function(error) {
+            // TODO: better error handling
+            console.log("Post fail!")
+            postStatusArr.push(error)
+          })
         }
-        callback()
+
+        function loopPosts(){
+          for (i=0;i<attributes.length;i++){
+            httpPost(attributes[i])
+          }
+        }
+
+        // makes a separate $.ajax call for each field in the form
+        loopPosts()
+
+        // TODO: Add logic here to only redirect if all posts are successful
+        $location.path('/company_stats/'+$scope.companyId)
+      },
+
+      makeObjsToPost: function(){
+        var deferred = new $.Deferred()
+        var objsToPost = [];
+
+        // these were declared within the iife's closure earlier
+        // but not defined. Now that the DOM is loaded we can define them
+        employees = getValuesOfSelectedAttributes($('.employee-type input[type=checkbox]:checked'));
+        attributes = getValuesOfSelectedAttributes($('.list-wrapper option:selected'));
+
+        for (var i=0;i<attributes.length;i++){
+          objsToPost.push({
+            company_id: $scope.companyId,
+            attribute_id: attributes[i],
+            employee_types: employees
+          })
+        }
+
+        attributes = objsToPost;
+
+        deferred.resolve();
+        return deferred.promise();
       }
-      loopPosts(function(){console.log("hey")})
-      // Add logic here to only redirect if all posts are successful
-      $location.path('/company_stats/'+$scope.companyId)
     }
-
-    var makeObjsToPost = function(arr){
-      var objsToPost = []
-      for (var i=0;i<arr.length;i++){
-        objsToPost.push({
-          company_id: $scope.companyId,
-          attribute_id: arr[i],
-          employee_types: angular.toJson(employees)
-        })
-      }
-      postResponses(objsToPost)
-    }
-
-    var employees = getSelectedVals($('input[type=checkbox]:checked'))
-    var attributes = getSelectedVals($('option:selected'))
-    makeObjsToPost(attributes)
-
-  }
-
+  }();
 }]);
