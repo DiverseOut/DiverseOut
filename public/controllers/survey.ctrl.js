@@ -4,6 +4,9 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
   $scope.companyId = parseInt($routeParams.company_id)
   $scope.surveyId = parseInt($routeParams.survey_id)
 
+  // TODO: This uses $http and later $.ajax, which is inconsistent
+  // Use only one ajax method!
+  // VC
   $http({
     method: 'GET',
     url: 'http://localhost:3000/companies/'+$scope.companyId+'/surveys/'+$scope.surveyId,
@@ -36,7 +39,6 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
 
     // declaring (but not defining) employees and attributes
     // such that they can be modified later
-
     var employees
     var attributes
 
