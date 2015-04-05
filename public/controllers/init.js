@@ -49,6 +49,10 @@ ourApp.config(['$routeProvider', '$httpProvider',
         templateUrl: '../partials/survey.html',
         // controller: 'CompanyDashboardController'
       }).
+      when('/companies/:company_id/company_stats', {
+        templateUrl: '../partials/company_stats.html',
+        // controller: 'CompanyDashboardController'
+      }).
       otherwise({
         redirectTo: '/'
       });

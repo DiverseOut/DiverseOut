@@ -7,7 +7,7 @@
     </span>
 
     <ul ng-repeat="survey in surveyInfo.attribute_groups" class="list-group">
-      <li class="list-group-item">
+      <li class="list-group-item" style="background-color:#f1f1f1">
         <h4>{{survey.group.group_name}}</h4>
         <select class="form-control">
             <option ng-repeat="attribute in survey.individual_attributes" ng-value="{{attribute.id}}">{{attribute.attribute_name}}</option>
