@@ -1,5 +1,7 @@
 ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookies', '$location', '$routeParams', function($scope, $http, $route, $cookies, $location, $routeParams){
 
+  debugger
+
   $scope.companyId = parseInt($routeParams.company_id)
   $scope.surveyId = parseInt($routeParams.survey_id)
 
@@ -9,18 +11,18 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
   }).success(function(response){
     // console.log(response)
     $scope.surveyInfo = response
-    // submitForm
+
     $scope.getVals = function(){
-      // PROMISE
-      ourIife = submitForm()
-      ourIife.makeObjsToPost().then(ourIife.postResponses());
-      // console.log("getVals yeah!")
+
+      // This isn't really an iife :(
+      formPostFunctions = submitForm()
+
+      formPostFunctions.makeObjsToPost().then(formPostFunctions.postResponses());
+
     }
   })
 
-// makeObjsToPost(attributes)
 
-  // iife heck yeah
   var submitForm = function(){
 
     // Closure values:
@@ -36,8 +38,8 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
       return returnArray
     };
 
-    var employees = getValuesOfSelectedAttributes($('input[type=checkbox]:checked'));
-    var attributes = getValuesOfSelectedAttributes($('option:selected'));
+    var employees = getValuesOfSelectedAttributes($('.employee-type input[type=checkbox]:checked'));
+    var attributes = getValuesOfSelectedAttributes($('.list-wrapper option:selected'));
 
     // return object
     return {
@@ -83,8 +85,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
           objsToPost.push({
             company_id: $scope.companyId,
             attribute_id: attributes[i],
-            // 'employee_types': angular.toJson(employees)
-            employee_types: employees //PROBLEM IS HERE DOGG
+            employee_types: employees
           })
         }
 
@@ -93,7 +94,6 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
         deferred.resolve();
         return deferred.promise();
       }
-
     }
   };
 

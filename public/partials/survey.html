@@ -2,18 +2,23 @@
 
   <form ng-submit="getVals()">
     <h4>Select Employee Type</h4>
-      <span ng-repeat="type in surveyInfo.employee_types">
-      <input type="checkbox" ng-value="{{type.id}}"><p>{{type.type_name}}</p>
-    </span>
 
-    <ul ng-repeat="survey in surveyInfo.attribute_groups" class="list-group">
-      <li class="list-group-item" style="background-color:#f1f1f1">
-        <h4>{{survey.group.group_name}}</h4>
-        <select class="form-control">
-            <option ng-repeat="attribute in survey.individual_attributes" ng-value="{{attribute.id}}">{{attribute.attribute_name}}</option>
-        </select>
-      </li>
-    </ul>
+    <div class="employee-type">
+      <span ng-repeat="type in surveyInfo.employee_types">
+        <input type="checkbox" ng-value="{{type.id}}"><p>{{type.type_name}}</p>
+      </span>
+    </div>
+
+    <div class="list-wrapper">
+      <ul ng-repeat="survey in surveyInfo.attribute_groups" class="list-group">
+        <li class="list-group-item" style="background-color:#f1f1f1">
+          <h4>{{survey.group.group_name}}</h4>
+          <select class="form-control">
+              <option ng-repeat="attribute in survey.individual_attributes" ng-value="{{attribute.id}}">{{attribute.attribute_name}}</option>
+          </select>
+        </li>
+      </ul>
+    </div>
 
     <input class="form-control" type="submit" value="Submit">
   </form>

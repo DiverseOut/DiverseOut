@@ -10,8 +10,4 @@ ourApp.controller("CompanyStatsController", ['$scope', '$http', '$route', '$cook
     $scope.companyInfo = response.company_info
     $scope.companyStats = response.response_stats
   })
-
-
-
-
 }]);
