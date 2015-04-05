@@ -1,6 +1,5 @@
 ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookies', '$location', '$routeParams', function($scope, $http, $route, $cookies, $location, $routeParams){
 
-  debugger
 
   $scope.companyId = parseInt($routeParams.company_id)
   $scope.surveyId = parseInt($routeParams.survey_id)
@@ -9,20 +8,16 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
     method: 'GET',
     url: 'http://localhost:3000/companies/'+$scope.companyId+'/surveys/'+$scope.surveyId,
   }).success(function(response){
-    // console.log(response)
+
     $scope.surveyInfo = response
 
+    // following function is called on form submit
     $scope.getVals = function(){
-
-      // This isn't really an iife :(
-      formPostFunctions = submitForm()
-
-      formPostFunctions.makeObjsToPost().then(formPostFunctions.postResponses());
-
+      submitForm.makeObjsToPost().then(submitForm.postResponses());
     }
   })
 
-
+// our iife! so proud.
   var submitForm = function(){
 
     // Closure values:
@@ -38,10 +33,12 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
       return returnArray
     };
 
-    var employees = getValuesOfSelectedAttributes($('.employee-type input[type=checkbox]:checked'));
-    var attributes = getValuesOfSelectedAttributes($('.list-wrapper option:selected'));
+    // declaring (but not defining) these in the closure
+    // such that they can be modified later
 
-    // return object
+    var employees
+    var attributes
+
     return {
 
       postResponses: function(){
@@ -81,6 +78,11 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
         var deferred = new $.Deferred()
         var objsToPost = [];
 
+        // these were declared within the iife's closure earlier
+        // but not defined. Now that the DOM is loaded we can define them
+        employees = getValuesOfSelectedAttributes($('.employee-type input[type=checkbox]:checked'));
+        attributes = getValuesOfSelectedAttributes($('.list-wrapper option:selected'));
+
         for (var i=0;i<attributes.length;i++){
           objsToPost.push({
             company_id: $scope.companyId,
@@ -95,6 +97,6 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
         return deferred.promise();
       }
     }
-  };
+  }();
 
 }]);
