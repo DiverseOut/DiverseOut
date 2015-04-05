@@ -4,6 +4,15 @@
   <p>Search for companies:</p>
   <input type="text" class="form-control" ng-model="searchInput">
 
-  <p ng-repeat="company in companies | filter:searchInput"><a href=''>{{company.name}}</a></p>
+  <ul class="list-group">
+    <span ng-repeat="company in companies | filter:searchInput">
+      <a ng-href='#/companies/{{company.id}}/company_stats'>
+        <li class="list-group-item">
+          <h4>{{company.name}}</h4>
+        </li>
+      </a>
+    </span>
+  </ul>
+
 
 </div>

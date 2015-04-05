@@ -20,7 +20,7 @@ ourApp.controller("SignInSignUpController", ['$scope', '$http', '$route', '$cook
         }
         $http({
           method: 'GET',
-          url: 'http://localhost:9393/admins/authenticate',
+          url: 'http://localhost:3000/admins/authenticate',
           params: credentials,
         }).success(function(response, body){
             console.log(response)
@@ -55,7 +55,7 @@ ourApp.controller("SignInSignUpController", ['$scope', '$http', '$route', '$cook
         console.log(credentials)
        $http({
           method: 'POST',
-          url: 'http://localhost:9393/admins',
+          url: 'http://localhost:3000/admins',
           params: credentials
        }).success(function(response, body){
           console.log(response)

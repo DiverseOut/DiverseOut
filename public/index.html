@@ -11,7 +11,7 @@
 <body>
     <section ng-controller="MainController" id="header">
         <div class='navbar'>
-            <h1><a href='#/'></a></h1>
+            <h1><a href='#/'>DiverseOut</a></h1>
             <p ng-show="!loggedInUser"><a href='#/signin'>Company Login</a></p>
             <p ng-show="companyId"><a ng-href='#/company_dashboard/{{companyId}}'>Company Dashboard</a></p>
             <p ng-show="!companyId"><a ng-href='#/create_company'>Create Company</a></p>
@@ -36,6 +36,7 @@
     <script src="controllers/init.js"></script>
     <script src="controllers/splash.ctrl.js"></script>
     <script src="controllers/signin_signup.ctrl.js"></script>
+    <script src="controllers/company_stats.ctrl.js"></script>
     <script src="controllers/company_dashboard.ctrl.js"></script>
     <script src="controllers/create_company.ctrl.js"></script>
     <script src="controllers/create_survey.ctrl.js"></script>

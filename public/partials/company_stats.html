@@ -1,3 +1,15 @@
 <div ng-controller="CompanyStatsController">
 
+  <h4>{{companyInfo.name}}</h4>
+
+  <ul ng-repeat="stat in companyStats">
+    <li>
+      <p>{{stat.field_title}}</p>
+      <ul ng-repeat="response in stat.responses">
+        <li>
+          <p>{{response.attribute_title}}: {{response.value}}</p>
+        </li>
+      </ul>
+    </li>
+  </ul>
 </div>
