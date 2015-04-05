@@ -9,57 +9,92 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
   }).success(function(response){
     console.log(response)
     $scope.surveyInfo = response
+    // submitForm
+    $scope.getVals = function(){
+      // PROMISE
+      ourIife = submitForm()
+      ourIife.makeObjsToPost().then(ourIife.postResponses());
+      console.log("getVals yeah!")
+    }
   })
 
-// Function too long! Refactor. Also, put secret key form in here!!
-  $scope.getVals = function(){
-    var getSelectedVals = function(arr){
-      var arrToReturn = []
-      for (var i=0;i<arr.length;i++){
-        var value = parseInt($(arr[i]).val())
-        arrToReturn.push(value)
-      }
-      return arrToReturn
-    }
+// makeObjsToPost(attributes)
 
-    var postResponses = function(responseArr){
-      var postStatusArr = []
-      function httpPost(param){
-        $http({
-          method: 'POST',
-          url: 'http://localhost:3000/companies/'+$scope.companyId+'/responses',
-          params: param
-        }).success(function(response){
-          postStatusArr.push(response)
-        })
+  // iife heck yeah
+  var submitForm = function(){
+
+    // Closure values:
+    var getValuesOfSelectedAttributes = function(arr){
+      for (var i=0;i<arr.length;i++){
+        arr[i] = parseInt($(arr[i]).val())
       }
-      function loopPosts(callback){
-        for (i=0;i<responseArr.length;i++){
-          httpPost(responseArr[i])
+      return arr
+    };
+
+    var employees = getValuesOfSelectedAttributes($('input[type=checkbox]:checked'));
+    var attributes = getValuesOfSelectedAttributes($('option:selected'));
+
+    return {
+
+      // define postResponses as $.Deferred((here's the function))
+      postResponses: function(){
+        var postStatusArr = []
+
+        function httpPost(param){
+          $http({
+            method: 'POST',
+            url: 'http://localhost:3000/companies/'+$scope.companyId+'/responses',
+            params: param
+          }).success(function(response){
+            console.log("Post success!")
+            postStatusArr.push(response)
+          }).error(function(error) {
+            // TODO: error handling
+            console.log("Post fail!")
+            postStatusArr.push(error)
+          })
         }
-        callback()
+
+        function loopPosts(){
+          for (i=0;i<attributes.length;i++){
+            httpPost(attributes[i])
+            // console.log(i)
+          }
+          // callback()
+          // debugger
+          console.log(attributes)
+        }
+
+        loopPosts()
+        // Add logic here to only redirect if all posts are successful
+        $location.path('/company_stats/'+$scope.companyId)
+      },
+
+      makeObjsToPost: function(){
+        console.log(attributes)
+
+        var deferred = new $.Deferred()
+
+        var objsToPost = [];
+        for (var i=0;i<attributes.length;i++){
+          objsToPost.push({
+            company_id: $scope.companyId,
+            attribute_id: attributes[i],
+            employee_types: angular.toJson(employees)
+          })
+        }
+        attributes = objsToPost;
+
+        deferred.resolve();
+        return deferred.promise();
       }
-      loopPosts(function(){console.log("hey")})
-      // Add logic here to only redirect if all posts are successful
-      $location.path('/company_stats/'+$scope.companyId)
+
     }
+  };
 
-    var makeObjsToPost = function(arr){
-      var objsToPost = []
-      for (var i=0;i<arr.length;i++){
-        objsToPost.push({
-          company_id: $scope.companyId,
-          attribute_id: arr[i],
-          employee_types: angular.toJson(employees)
-        })
-      }
-      postResponses(objsToPost)
-    }
 
-    var employees = getSelectedVals($('input[type=checkbox]:checked'))
-    var attributes = getSelectedVals($('option:selected'))
-    makeObjsToPost(attributes)
+// Function too long! Refactor. Also, put secret key form in here!!
 
-  }
+
 
 }]);
