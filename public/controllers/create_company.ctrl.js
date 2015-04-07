@@ -15,7 +15,7 @@ ourApp.controller("CreateCompanyController", ['$scope', '$http', '$route', '$coo
     console.log(credentials)
     $http({
       method: 'POST',
-      url: 'http://localhost:3000/admins/'+$cookies.user_id+'/companies',
+      url: API_ROOT + 'admins/'+$cookies.user_id+'/companies',
       params: credentials
     }).success(function(response){
       console.log(response)

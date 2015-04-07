@@ -1,5 +1,8 @@
 var ourApp = angular.module('ourApp', ['ngSanitize', 'ngRoute', 'ngCookies'])
 
+// Global var to be more DRY!
+var API_ROOT = "http://localhost:3000/"
+
 // ourApp.config(['$httpProvider', function($httpProvider){
 //   //Enable cross domain calls
 //   $httpProvider.defaults.useXDomain = true;
@@ -12,6 +15,7 @@ var ourApp = angular.module('ourApp', ['ngSanitize', 'ngRoute', 'ngCookies'])
 
 ourApp.config(['$routeProvider', '$httpProvider',
   function($routeProvider, $httpProvider) {
+
 
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common["X-Requested-With"];

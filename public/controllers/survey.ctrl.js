@@ -9,7 +9,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
   // VC
   $http({
     method: 'GET',
-    url: 'http://localhost:3000/companies/'+$scope.companyId+'/surveys/'+$scope.surveyId,
+    url: API_ROOT + 'companies/'+$scope.companyId+'/surveys/'+$scope.surveyId,
   }).success(function(response){
 
     // surveyInfo is used to populate DOM; see partials/survey.html
@@ -52,7 +52,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
           // debugger
           jQuery.ajax({
             type: 'POST',
-            url: 'http://localhost:3000/companies/'+$scope.companyId+'/responses',
+            url: API_ROOT + 'companies/'+$scope.companyId+'/responses',
             data: parameters
           }).done(function(response){
             console.log("Post success!")
