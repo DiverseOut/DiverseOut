@@ -14,7 +14,7 @@ ourApp.controller("CompanyDashboardController", ['$scope', '$http', '$route', '$
 
     $http({
       method: 'GET',
-      url: 'http://localhost:3000/companies/'+$scope.companyId,
+      url: API_ROOT + 'companies/'+$scope.companyId,
     }).success(function(response){
       console.log(response)
       $scope.company = response.company

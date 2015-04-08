@@ -5,6 +5,7 @@ ourApp.controller("MainController", ['$scope', '$http', '$route','$cookies', '$l
     $scope.loggedInUser = $cookies.user_id
     $scope.companyId = $cookies.company_id
 
+
     $scope.logout = function(){
       delete $cookies.user_id
       delete $cookies.company_id

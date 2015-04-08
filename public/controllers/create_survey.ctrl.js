@@ -5,7 +5,7 @@ ourApp.controller("CreateSurveyController", ['$scope', '$http', '$route', '$cook
 
   $http({
     method: 'GET',
-    url: 'http://localhost:3000/attribute_groups'
+    url: API_ROOT + 'attribute_groups'
   }).success(function(response){
     $scope.attributeGroups = response
   })
@@ -27,7 +27,7 @@ ourApp.controller("CreateSurveyController", ['$scope', '$http', '$route', '$cook
     }
     $http({
       method: 'POST',
-      url: 'http://localhost:3000/admins/'+$cookies.user_id+'/companies/'+$cookies.company_id+'/surveys',
+      url: API_ROOT + 'admins/'+$cookies.user_id+'/companies/'+$cookies.company_id+'/surveys',
       params: surveyDetails
     }).success(function(response){
       console.log(response)
