@@ -4,7 +4,7 @@
   <form ng-submit="getVals()">
     <h4>Choose Questions</h4>
     <h5>Select questions to include in your survey. Click each bar to show individual attribute options that your employees will be able to choose from.</h5>
-    <h4><input type="checkbox" ng-click="selectAll()">Select All</input></h4>
+    <h4><input id="selectAll" type="checkbox" ng-click="selectAll()">Select All</input></h4>
     <ul ng-repeat="group in attributeGroups" class="list-group">
       <li class="list-group-item inline" style="background-color:gainsboro" class="group_title" ng-click="showDetails = ! showDetails">
         <div class="checkbox">
