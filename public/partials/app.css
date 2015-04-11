@@ -67,6 +67,8 @@ input[type=checkbox] {
   margin:10;
 }
 
+
+
 /*
 #signin_signout {
   border:1px solid black;
@@ -90,7 +92,7 @@ input[type=checkbox] {
   background-color: #f1f1f1;
 }
 
-ul {
+.attribute_list ul {
   padding:0;
 }
 

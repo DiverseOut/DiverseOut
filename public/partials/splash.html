@@ -6,7 +6,7 @@
 
   <ul class="list-group">
     <span ng-repeat="company in companies | filter:searchInput">
-      <a ng-href='#/companies/{{company.id}}/company_stats'>
+      <a href="" data-toggle="modal" data-target=".bs-example-modal-lg" ng-click="getCompanyInfo(company.id)">
         <li class="list-group-item">
           <h4>{{company.name}}</h4>
         </li>
@@ -14,5 +14,27 @@
     </span>
   </ul>
 
+<!-- MODAL FOR EACH COMPANY'S INFO -->
+  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div>
+          <h2>{{companyInfo.name}}</h2>
+          <ul ng-repeat="stat in companyStats">
+            <li>
+              <h4>{{stat.field_title}}</h4>
+              <ul ng-repeat="response in stat.responses">
+                <li>
+                  <p>{{response.attribute_title}}: {{response.value}}</p>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
 </div>
