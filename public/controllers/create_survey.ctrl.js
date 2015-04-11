@@ -20,6 +20,10 @@ ourApp.controller("CreateSurveyController", ['$scope', '$http', '$route', '$cook
     createSurvey(attributeGroups)
   }
 
+  $scope.selectAll = function(){
+    $('.checkbox input[type=checkbox]').prop('checked',true)
+  }
+
   var createSurvey = function(groups){
     var surveyDetails = {
       company_id:       $scope.companyId,
