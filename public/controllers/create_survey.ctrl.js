@@ -12,12 +12,21 @@ ourApp.controller("CreateSurveyController", ['$scope', '$http', '$route', '$cook
 
   $scope.getVals = function(){
     var attributeGroups = []
-    var checkboxArr = $('input[type=checkbox]:checked')
+    var checkboxArr = $('.checkbox input[type=checkbox]:checked')
     for (var i=0;i<checkboxArr.length;i++){
       var value = parseInt($(checkboxArr[i]).val())
       attributeGroups.push(value)
     }
     createSurvey(attributeGroups)
+  }
+
+  $scope.selectAll = function(){
+    // console.log($('selectAll').checked = true)
+    if ($('#selectAll').prop('checked')){
+      $('.checkbox input[type=checkbox]').prop('checked',true)
+    } else {
+      $('.checkbox input[type=checkbox]').prop('checked',false)
+    }
   }
 
   var createSurvey = function(groups){
