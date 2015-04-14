@@ -1,6 +1,8 @@
 <div ng-controller="CompanyDashboardController">
 
-  <h4>{{company.name}}</h4><img ng-src="{{company.thumbnail_url}}">
+  <img class="modal_img" ng-show="company.thumbnail_url !== null" ng-src='{{companyInfo.thumbnail_url}}'>
+  <h1>{{company.name}}</h1>
+
   <p>{{company.city}}, {{company.state}}</p>
   <p><a href="">Edit Company Info</a></p>
 

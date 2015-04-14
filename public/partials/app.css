@@ -1,3 +1,7 @@
+body {
+
+}
+
 .navbar {
   height:50px;
   width:100%;
@@ -96,4 +100,30 @@ input[type=checkbox] {
   padding:0;
 }
 
+.centered {
+  text-align: center;
+  /*width:50%;*/
+  margin:0 auto;
+}
 
+.centered form {
+  margin:0 auto;
+}
+
+.modal_img {
+  height:100px;
+  width:100px;
+}
+
+.modal-content h1 {
+  display:inline-block;
+  font-size: 3em;
+  position: relative;
+  top:13px;
+  font-weight: bold;
+  margin: 0px 0px 20px 20px;
+}
+
+.nav_wrapper {
+  height: 65px;
+}

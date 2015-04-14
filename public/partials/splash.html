@@ -1,5 +1,6 @@
 <div ng-controller="SplashController">
 
+<div class="centered">
   <h3>Companies</h3>
   <p>Search for companies:</p>
   <input type="text" class="form-control" ng-model="searchInput">
@@ -13,6 +14,7 @@
       </a>
     </span>
   </ul>
+</div>
 
 <!-- MODAL FOR EACH COMPANY'S INFO -->
   <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -20,7 +22,10 @@
       <div class="modal-content">
 
         <div>
-          <h2>{{companyInfo.name}}</h2>
+
+            <img class="modal_img" ng-show="company.thumbnail_url !== null" ng-src='{{company.thumbnail_url}}'>
+            <h1>{{companyInfo.name}}</h1>
+
           <ul ng-repeat="stat in companyStats">
             <li>
               <h4>{{stat.field_title}}</h4>

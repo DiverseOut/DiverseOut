@@ -14,7 +14,6 @@ ourApp.controller("SplashController", ['$scope', '$http', '$cookies', '$location
       console.log(response)
       $scope.companyInfo = response.company_info
       $scope.companyStats = response.response_stats
-      debugger
     })
   }
 
