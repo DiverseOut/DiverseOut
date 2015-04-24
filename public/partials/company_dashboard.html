@@ -1,10 +1,12 @@
 <div ng-controller="CompanyDashboardController">
 
-  <img class="modal_img" ng-show="company.thumbnail_url !== null" ng-src='{{companyInfo.thumbnail_url}}'>
-  <h1>{{company.name}}</h1>
+  <img class="modal_img" ng-show="company.thumbnail_url !== null" ng-src='{{company.thumbnail_url}}'>
 
-  <p>{{company.city}}, {{company.state}}</p>
-  <p><a href="">Edit Company Info</a></p>
+  <div class="company_title">
+    <a ng-href="{{company.website_url}}" target="_blank"><h1>{{company.name}}</h1></a>
+    <p>{{company.city}}, {{company.state}}</p>
+    <p><a href="">Edit Company Info</a></p>
+  </div>
 
   <div ng-show="surveys.length > 0">
     <h4>Your Company's Past Surveys:</h4>

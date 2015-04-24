@@ -1,6 +1,5 @@
 ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookies', '$location', '$routeParams', function($scope, $http, $route, $cookies, $location, $routeParams){
 
-
   $scope.companyId = parseInt($routeParams.company_id)
   $scope.surveyId = parseInt($routeParams.survey_id)
 
@@ -21,7 +20,6 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
     }
   })
 
-// our iife! so proud.
   var submitForm = function(){
 
     // Closure values:
@@ -101,4 +99,5 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
       }
     }
   }();
+
 }]);
