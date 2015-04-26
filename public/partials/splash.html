@@ -16,30 +16,7 @@
   </ul>
 </div>
 
-<!-- MODAL FOR EACH COMPANY'S INFO -->
-  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-
-        <div>
-
-            <img class="modal_img" ng-show="company.thumbnail_url !== null" ng-src='{{company.thumbnail_url}}'>
-            <h1>{{companyInfo.name}}</h1>
-
-          <ul ng-repeat="stat in companyStats">
-            <li>
-              <h4>{{stat.field_title}}</h4>
-              <ul ng-repeat="response in stat.responses">
-                <li>
-                  <p>{{response.attribute_title}}: {{response.value}}</p>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </div>
+<!-- MODAL FOR EACH COMPANY'S INFO (CUSTOM DIRECTIVE)-->
+<piechart-modal></piechart-modal>
 
 </div>

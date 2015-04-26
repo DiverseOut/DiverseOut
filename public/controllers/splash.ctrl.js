@@ -17,4 +17,24 @@ ourApp.controller("SplashController", ['$scope', '$http', '$cookies', '$location
     })
   }
 
+  $scope.upVote = function(companyId){
+    $http({
+      method: "POST",
+      url: API_ROOT + "/companies/" + companyId + "/upvote"
+    }).success(function(response){
+      // update votes that show below buttons. Also, check rake routes for upvote/downvote
+      console.log(response)
+    })
+  }
+
+  $scope.downVote = function(companyId){
+    $http({
+      method: "POST",
+      url: API_ROOT + "/companies/" + companyId + "/downvote"
+    }).success(function(response){
+      // update votes that show below buttons. Also, check rake routes for upvote/downvote
+      console.log(response)
+    })
+  }
+
 }]);

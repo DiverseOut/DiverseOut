@@ -13,6 +13,7 @@
         <div class="nav_wrapper">
             <div class='navbar'>
                 <h1><a href='#/'>DiverseOut</a></h1>
+
                 <p ng-show="!loggedInUser"><a href='#/signin'>Company Login</a></p>
                 <p ng-show="companyId"><a ng-href='#/company_dashboard/{{companyId}}'>Company Dashboard</a></p>
                 <p ng-show="loggedInUser"><a ng-href='#/create_company'>Create Company</a></p>
@@ -20,6 +21,8 @@
                 <p ng-show="loggedInUser"><a href='#' ng-click="logout()">Logout</a></p>
             </div>
         </div>
+        <!-- FIND A BETTER PLACE FOR THIS WELCOME -->
+        <p ng-show="loggedInUser">Welcome {{loggedInUser.first_name}} from {{company.name}}!</p>
     </section>
 
     <div ng-view></div>
@@ -33,8 +36,10 @@
     <script src="vendor/angular-cookies.js"></script>
     <script src="vendor/moment.js"></script>
     <script src="vendor/sha1.js"></script>
+    <script src="vendor/d3pie.min.js"></script>
 
-    <!-- CUSTOM -->
+
+    <!-- CONTROLLERS -->
     <script src="controllers/init.js"></script>
     <script src="controllers/splash.ctrl.js"></script>
     <script src="controllers/signin_signup.ctrl.js"></script>
@@ -44,5 +49,10 @@
     <script src="controllers/create_survey.ctrl.js"></script>
     <script src="controllers/survey.ctrl.js"></script>
     <script src="controllers/main.ctrl.js"></script>
+
+    <!-- DIRECTIVES -->
+
+    <script src="directives/piechart-modal.dir.js"></script>
+
 </body>
 </html>
