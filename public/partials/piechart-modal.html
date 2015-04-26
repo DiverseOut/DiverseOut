@@ -1,0 +1,36 @@
+  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div>
+
+            <img class="modal_img" ng-show="companyInfo.thumbnail_url !== null" ng-src='{{companyInfo.thumbnail_url}}'>
+            <div class="company_title">
+              <a ng-href="{{companyInfo.website_url}}" target="_blank"><h1>{{companyInfo.name}}</h1></a>
+              <h5>{{companyInfo.city}}, {{companyInfo.state}}</h5>
+            </div>
+
+            <div class="buttons">
+              <button ng-click="upVote(companyInfo.id)">Upvote</button><br>
+              <button ng-click="downVote(companyInfo.id)">Downvote</button>
+              <p>Votes: {{companyInfo.votes}}</p>
+            </div>
+
+          <ul ng-repeat="stat in companyStats">
+
+            <li>
+              <h4>{{stat.field_title}}</h4>
+              <ul ng-repeat="response in stat.responses">
+                <li>
+                  <p>{{response.attribute_title}}: {{response.value}}</p>
+                </li>
+              </ul>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
