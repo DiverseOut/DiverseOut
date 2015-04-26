@@ -129,3 +129,17 @@ input[type=checkbox] {
 .nav_wrapper {
   height: 65px;
 }
+
+.buttons {
+  display:inline-table;
+  float:right;
+  margin:20px;
+}
+
+.buttons button {
+  margin:5px;
+  width:100px;
+  border-radius:10px;
+  background-color:#327ab7;
+  color:white;
+}

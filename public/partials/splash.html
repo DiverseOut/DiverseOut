@@ -29,6 +29,12 @@
               <h5>{{companyInfo.city}}, {{companyInfo.state}}</h5>
             </div>
 
+            <div class="buttons">
+              <button ng-click="upVote(companyInfo.id)">Upvote</button><br>
+              <button ng-click="downVote(companyInfo.id)">Downvote</button>
+              <p>Votes: {{companyInfo.votes}}</p>
+            </div>
+
           <ul ng-repeat="stat in companyStats">
 
             <li>
