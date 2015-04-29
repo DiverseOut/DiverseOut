@@ -17,6 +17,10 @@ ourApp.controller("SplashController", ['$scope', '$http', '$cookies', '$location
     })
   }
 
+  // $scope.getPieDataset = function(response_stats){
+
+  // }
+
   $scope.upVote = function(companyId){
     $http({
       method: "POST",
@@ -35,6 +39,6 @@ ourApp.controller("SplashController", ['$scope', '$http', '$cookies', '$location
       // update votes that show below buttons. Also, check rake routes for upvote/downvote
       console.log(response)
     })
-  }
+  };
 
 }]);

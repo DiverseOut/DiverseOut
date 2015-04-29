@@ -2,13 +2,17 @@ ourApp.controller("MainController", ['$scope', '$http', '$route','$cookies', '$l
 
     console.log("USER COOKIE: "+$cookies.user_id+", COMPANY COOKIE:"+$cookies.company_id)
 
+    $scope.loggedInUser = $cookies.user_id
+    $scope.companyId = $cookies.company_id
+
     // REFACTOR THESE FIRST 2 HTTP CALLS SO DONT HAVE TO CALL THEM EACH TIME TO GET WELCOME GREETING
+
     $http({
       method: 'GET',
       url: API_ROOT + 'admins/'+$cookies.user_id
     }).success(function(response){
       console.log(response)
-      $scope.loggedInUser = response
+      $scope.user = response
     })
 
     $http({
@@ -16,7 +20,7 @@ ourApp.controller("MainController", ['$scope', '$http', '$route','$cookies', '$l
       url: API_ROOT + 'companies/'+$cookies.company_id
     }).success(function(response){
       console.log(response)
-      $scope.company = response.company
+      $scope.companyInfo = response.company
     })
 
     $scope.logout = function(){
