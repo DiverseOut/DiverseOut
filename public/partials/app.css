@@ -2,6 +2,12 @@ body {
 
 }
 
+ul, li {
+  padding:0;
+  margin:0;
+  list-style-type: none;
+}
+
 .navbar {
   height:50px;
   width:100%;
@@ -148,3 +154,45 @@ input[type=checkbox] {
   text-align: center;
   font-weight: bold;
 }
+
+.legend {
+  display: inline-block;
+  vertical-align: middle;
+  margin:5px 0px 5px 30px;
+  font-weight: bold
+}
+
+.piechart {
+  margin: 0 auto;
+  position: relative;
+  width: 90%;
+}
+
+.pie_circle {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-filter: drop-shadow( 10px 10px 10px gray );
+  filter: drop-shadow( 10px 10px 10px gray );
+}
+
+.stat_list li h3 {
+  text-align: center;
+  /*margin: 10px 10px;*/
+  /*padding: 5px;*/
+  /*background: rgb(55, 166, 252);*/
+  /*border-radius: 10px;*/
+  /*color: white;*/
+}
+
+.stat_list li {
+  border: 1px solid gray;
+  border-radius: 10px;
+  margin: 10;
+  padding: 10px;
+  background:white;
+}
+
+/*.stat_list {
+  background: rgb(55, 166, 252)
+}*/
+

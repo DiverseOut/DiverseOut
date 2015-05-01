@@ -1,5 +1,8 @@
 <div ng-controller="SplashController">
 
+  <!-- FIND A BETTER PLACE FOR THIS WELCOME -->
+  <h3 class="welcome" ng-show="loggedInUser">Welcome {{user.first_name}} from {{companyInfo.name}}!</h3>
+
 <div class="centered">
   <h3>Companies</h3>
   <p>Search for companies:</p>
@@ -17,7 +20,6 @@
 </div>
 
 <!-- MODAL FOR EACH COMPANY'S INFO (CUSTOM DIRECTIVE)-->
-<!-- <piechart-modal></piechart-modal> -->
   <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -35,20 +37,23 @@
               <p>Votes: {{companyInfo.votes}}</p>
             </div>
 
-          <ul ng-repeat="stat in companyStats">
-            <li>
-              <h4>{{stat.field_title}}</h4>
+          <div class="stat_list">
+            <ul ng-repeat="stat in companyStats">
+              <li>
+                <h3>{{stat.field_title}}</h3>
+                <d3piechart class="piechart" dataset="stat.responses"></d3piechart>
+  <!--
+                <div class="responses">
+                <ul ng-repeat="response in stat.responses">
+                  <li>
+                    <p>{{response.attribute_title}}: {{response.value}}</p>
+                  </li>
+                </ul>
+                </div> -->
 
-              <d3piechart dataset="stat.responses"></d3piechart>
-
-              <ul ng-repeat="response in stat.responses">
-                <li>
-                  <p>{{response.attribute_title}}: {{response.value}}</p>
-                </li>
-              </ul>
-
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </div>
         </div>
 
       </div>
