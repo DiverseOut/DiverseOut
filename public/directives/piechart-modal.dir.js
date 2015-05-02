@@ -17,7 +17,19 @@ ourApp.directive('d3piechart', function() {
           //Width and height
           var w = 250;
           var h = 250;
-          var dataset = $scope.dataset;
+
+          //Function to filter out data <= 0
+          var posNum = function(data){
+            filteredData = []
+            for (var i=0;i<data.length;i++){
+              if (data[i].value>0){
+                filteredData.push(data[i])
+              }
+            }
+            return filteredData
+          };
+
+          var dataset = posNum($scope.dataset);
           var outerRadius = w / 2;
           var innerRadius = 0;
           var arc = d3.svg.arc()
@@ -55,39 +67,29 @@ ourApp.directive('d3piechart', function() {
             })
             .attr("d", arc);
 
-          //Labels
-          // arcs.append("text")
-          //   .attr("transform", function(d) {
-          //     return "translate(" + arc.centroid(d) + ")";
-          //   })
-          //   .attr("text-anchor", "middle")
-          //     .text(function(d, i) {
-          //       if (dataset[i].value > 0) {return dataset[i].attribute_title};
-          //   });
-/////////
-        var legend = d3.select(jQuery(element).get(0)).append("svg")
-            .attr("class", "legend")
-            // .attr("width", 100)
-            // .attr("height", 100)
-          .selectAll("g")
-            .data(dataset)
-          .enter().append("g")
-            .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+          //Legend
+          var legend = d3.select(jQuery(element).get(0)).append("svg")
+              .attr("class", "legend")
+              // .attr("width", 100)
+              // .attr("height", 100)
+            .selectAll("g")
+              .data(dataset)
+            .enter().append("g")
+              .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
-        legend.append("rect")
-            .attr("width", 18)
-            .attr("height", 18)
-            .style("fill", function(d,i) {
-              return color(i);
-            });
+          legend.append("rect")
+              .attr("width", 18)
+              .attr("height", 18)
+              .style("fill", function(d,i) {
+                return color(i);
+              });
 
-        legend.append("text")
-            .attr("x", 24)
-            .attr("y", 9)
-            .attr("dy", ".35em")
-            .text(function(d) { return d.attribute_title + ": " + d.value; });
+          legend.append("text")
+              .attr("x", 24)
+              .attr("y", 9)
+              .attr("dy", ".35em")
+              .text(function(d) { return d.attribute_title + ": " + d.value; });
 
-/////////
         }, true);
 
       };

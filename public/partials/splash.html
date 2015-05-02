@@ -7,17 +7,21 @@
   <h3>Companies</h3>
   <p>Search for companies:</p>
   <input type="text" class="form-control" ng-model="searchInput">
+</div>
 
+<!-- <div class="centered"> -->
   <ul class="list-group">
     <span ng-repeat="company in companies | filter:searchInput">
       <a href="" data-toggle="modal" data-target=".bs-example-modal-lg" ng-click="getCompanyInfo(company.id)">
         <li class="list-group-item">
+          <img class="list_img" ng-show="company.thumbnail_url !== null" ng-src='{{company.thumbnail_url}}'>
           <h4>{{company.name}}</h4>
         </li>
       </a>
     </span>
   </ul>
-</div>
+<!-- </div> -->
+
 
 <!-- MODAL FOR EACH COMPANY'S INFO (CUSTOM DIRECTIVE)-->
   <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -41,7 +45,7 @@
             <ul ng-repeat="stat in companyStats">
               <li>
                 <h3>{{stat.field_title}}</h3>
-                <d3piechart class="piechart" dataset="stat.responses"></d3piechart>
+                <d3piechart dataset="stat.responses"></d3piechart>
   <!--
                 <div class="responses">
                 <ul ng-repeat="response in stat.responses">
