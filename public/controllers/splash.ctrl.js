@@ -1,5 +1,26 @@
 ourApp.controller("SplashController", ['$scope', '$http', '$cookies', '$location', function($scope, $http, $cookies, $location){
 
+    // REFACTOR THESE FIRST 2 HTTP CALLS SO DONT HAVE TO CALL THEM EACH TIME TO GET WELCOME GREETING
+
+    $scope.loggedInUser = $cookies.user_id
+    $scope.companyId = $cookies.company_id
+
+    $http({
+      method: 'GET',
+      url: API_ROOT + 'admins/'+$cookies.user_id
+    }).success(function(response){
+      console.log(response)
+      $scope.user = response
+    })
+
+    $http({
+      method: 'GET',
+      url: API_ROOT + 'companies/'+$cookies.company_id
+    }).success(function(response){
+      console.log(response)
+      $scope.companyInfo = response.company
+    })
+
 // CHANGE TO HEROKU URL ONCE API IS LIVE:
   $http.get(API_ROOT).success(function(response){
     $scope.companies = response
