@@ -62,4 +62,9 @@ ourApp.controller("SplashController", ['$scope', '$http', '$cookies', '$location
     })
   };
 
+  //If all values in response array are 0, don't display that field
+  $scope.posNum = function(element){
+    return element.value == 0
+  }
+
 }]);
