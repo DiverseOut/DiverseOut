@@ -75,7 +75,7 @@ ourApp.directive('d3piechart', function() {
               .attr("y", 12)
               .attr("text-align","center")
               .attr("dy", "0.35em")
-              .text(function(d) { return d.value + "%" });
+              .text(function(d) { return d.percentage + "%" });
 
           legend.append("rect")
               .attr("x", 50)

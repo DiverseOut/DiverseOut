@@ -214,6 +214,11 @@ input[type=checkbox] {
   background: rgb(55, 166, 252)
 }*/
 
+.disclaimer {
+  margin-left: 10px;
+  font-size:0.75em;
+}
+
 @media (min-width: 992px){
   .modal-lg {
     width: 700;
