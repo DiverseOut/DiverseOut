@@ -43,11 +43,11 @@
 
           <div class="stat_list">
             <ul ng-repeat="stat in companyStats">
-              <li>
-                <h3>{{stat.field_title}}</h3>
+              <li ng-show="!stat.responses.every(posNum)">
+                <h2>{{stat.field_title}}</h2>
                 <d3piechart dataset="stat.responses"></d3piechart>
-  <!--
-                <div class="responses">
+
+<!--                 <div class="responses">
                 <ul ng-repeat="response in stat.responses">
                   <li>
                     <p>{{response.attribute_title}}: {{response.value}}</p>
