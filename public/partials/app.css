@@ -112,7 +112,7 @@ input[type=checkbox] {
 }
 
 .modal_img {
-  height:100px;
+ /* height:100px;*/
   width:100px;
   display:inline-block;
   margin:5px;
@@ -121,7 +121,7 @@ input[type=checkbox] {
 .list-group-item {
   margin: 5 auto;
   background-color: #f1f1f1;
-  width:40%;
+  width:70%;
 }
 
 .list-group-item h4{
@@ -130,6 +130,7 @@ input[type=checkbox] {
 
 .list-group-item:hover{
   background-color: #37A6FC;
+  text-decoration: none;
   color:white;
   font-weight: bold
 }
@@ -160,12 +161,18 @@ input[type=checkbox] {
   margin:20px;
 }
 
-.buttons button {
-  margin:5px;
+.buttons div{
+  height:20px;
   width:100px;
-  border-radius:10px;
+  border-radius:7px;
+  /*border: 1px solid #327ab7;*/
   background-color:#327ab7;
   color:white;
+  text-align: center
+}
+
+.buttons p {
+  text-align: center;
 }
 
 .welcome {
@@ -214,9 +221,19 @@ input[type=checkbox] {
   background: rgb(55, 166, 252)
 }*/
 
-.disclaimer {
-  margin-left: 10px;
+.fineprint {
   font-size:0.75em;
+  text-align: center;
+  margin:5px;
+}
+
+.fineprint p {
+  margin: 0 0 2px
+}
+
+.company_button_info {
+  left: 38%;
+  position: relative;
 }
 
 @media (min-width: 992px){
@@ -224,3 +241,29 @@ input[type=checkbox] {
     width: 700;
   }
 }
+
+@media (max-width: 600px){
+  .list-group-item {
+    width: 100%;
+  }
+  .company_button_info {
+    left: 5%;
+    position: relative;
+  }
+}
+
+.tooltip {
+  background: #eee;
+  box-shadow: 0 0 5px #999999;
+  color: #333;
+  display: none;
+  font-size: 12px;
+  left: 130px;
+  padding: 10px;
+  position: absolute;
+  text-align: center;
+  top: 95px;
+  width: 80px;
+  z-index: 20000 !important;
+}
+
