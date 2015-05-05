@@ -1,8 +1,5 @@
 <div ng-controller="SplashController">
 
-  <!-- FIND A BETTER PLACE FOR THIS WELCOME -->
-  <h3 class="welcome" ng-show="loggedInUser">Welcome {{user.first_name}} from {{companyInfo.name}}!</h3>
-
 <div class="centered">
   <h3>Companies</h3>
   <p>Search for companies:</p>
@@ -12,10 +9,11 @@
 <!-- <div class="centered"> -->
   <ul class="list-group">
     <span ng-repeat="company in companies | filter:searchInput">
-      <a href="" data-toggle="modal" data-target=".bs-example-modal-lg" ng-click="getCompanyInfo(company.id)">
+      <a data-toggle="modal" data-target=".bs-example-modal-lg" ng-click="getCompanyInfo(company.id)">
         <li class="list-group-item">
-          <img class="list_img" ng-show="company.thumbnail_url !== null" ng-src='{{company.thumbnail_url}}'>
-          <h4>{{company.name}}</h4>
+          <div class="company_button_info">
+          <img class="list_img" ng-show="company.thumbnail_url !== null" ng-src='{{company.thumbnail_url}}'><h4>{{company.name}}</h4>
+          </div>
         </li>
       </a>
     </span>
@@ -36,11 +34,10 @@
             </div>
 
             <div class="buttons">
-              <button ng-click="upVote(companyInfo.id)">Upvote</button><br>
-              <button ng-click="downVote(companyInfo.id)">Downvote</button>
+              <div ng-click="upVote(companyInfo.id)">Upvote</div><br>
               <p>Votes: {{companyInfo.votes}}</p>
+              <div ng-click="downVote(companyInfo.id)">Downvote</div>
             </div>
-          <p class="disclaimer">*Percentages based on number of responses, not number of total employees</p>
 
           <div class="stat_list">
             <ul ng-repeat="stat in companyStats">
@@ -59,6 +56,13 @@
               </li>
             </ul>
           </div>
+
+          <div class="fineprint">
+            <p>*Percentages based on number of responses, not number of total employees</p>
+            <p>Last Updated: {{lastUpdate}}</p>
+            <a ng-href="{{companyInfo.source}}" target="_blank"><p ng-show="companyInfo.source">Source</p></a>
+          </div>
+
         </div>
 
       </div>

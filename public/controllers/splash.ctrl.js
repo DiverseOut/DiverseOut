@@ -5,26 +5,14 @@ ourApp.controller("SplashController", ['$scope', '$http', '$cookies', '$location
     $scope.loggedInUser = $cookies.user_id
     $scope.companyId = $cookies.company_id
 
-    $http({
-      method: 'GET',
-      url: API_ROOT + 'admins/'+$cookies.user_id
-    }).success(function(response){
-      console.log(response)
-      $scope.user = response
-    })
-
-    $http({
-      method: 'GET',
-      url: API_ROOT + 'companies/'+$cookies.company_id
-    }).success(function(response){
-      console.log(response)
-      $scope.companyInfo = response.company
-    })
-
 // CHANGE TO HEROKU URL ONCE API IS LIVE:
   $http.get(API_ROOT).success(function(response){
     $scope.companies = response
   })
+
+  var readableDate = function(dateArr){
+    return (new Date(Date.parse(dateArr)).toDateString())
+  }
 
   $scope.getCompanyInfo = function(companyId) {
     console.log(companyId)
@@ -34,6 +22,7 @@ ourApp.controller("SplashController", ['$scope', '$http', '$cookies', '$location
     }).success(function(response){
       console.log(response)
       $scope.companyInfo = response.company_info
+      $scope.lastUpdate = readableDate(response.last_update)
       $scope.companyStats = response.response_stats
     })
   }
