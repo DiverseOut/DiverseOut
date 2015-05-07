@@ -1,12 +1,16 @@
 <div ng-controller="SplashController">
 
-<div class="centered">
-  <h3>Companies</h3>
-  <p>Search for companies:</p>
-  <input type="text" class="form-control" ng-model="searchInput">
+<div class="intro_search_box">
+  <div class="about">
+    <p>Help us gather and spread data to address the tech industry's diversity problems</p>
+  </div>
+
+  <div class="search">
+    <p>Search for a company or scroll through the list:</p>
+    <input type="text" class="form-control" ng-model="searchInput">
+  </div>
 </div>
 
-<!-- <div class="centered"> -->
   <ul class="list-group">
     <span ng-repeat="company in companies | filter:searchInput">
       <a data-toggle="modal" data-target=".bs-example-modal-lg" ng-click="getCompanyInfo(company.id)">
@@ -18,14 +22,12 @@
       </a>
     </span>
   </ul>
-<!-- </div> -->
 
-
-<!-- MODAL FOR EACH COMPANY'S INFO (CUSTOM DIRECTIVE)-->
+<!-- Bootstrap modal for each company's stats -->
+<!-- Todo: Put modal in separate file/controller -->
   <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-
         <div>
             <img class="modal_img" ng-show="companyInfo.thumbnail_url !== null" ng-src='{{companyInfo.thumbnail_url}}'>
             <div class="company_title">
@@ -34,7 +36,7 @@
             </div>
 
             <div class="buttons">
-              <div ng-click="upVote(companyInfo.id)">Upvote</div><br>
+              <div ng-click="upVote(companyInfo.id)">Upvote</div>
               <p>Votes: {{companyInfo.votes}}</p>
               <div ng-click="downVote(companyInfo.id)">Downvote</div>
             </div>
@@ -43,9 +45,10 @@
             <ul ng-repeat="stat in companyStats">
               <li ng-show="!stat.responses.every(posNum)">
                 <h2>{{stat.field_title}}</h2>
+                <!-- Custom piechart directive (in directives folder) -->
                 <d3piechart dataset="stat.responses"></d3piechart>
 
-<!--                 <div class="responses">
+                <!-- <div class="responses">
                 <ul ng-repeat="response in stat.responses">
                   <li>
                     <p>{{response.attribute_title}}: {{response.value}}</p>

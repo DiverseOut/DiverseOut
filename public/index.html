@@ -16,8 +16,6 @@
 
                 <p ng-show="!loggedInUser"><a href='#/signin'>Company Login</a></p>
                 <p ng-show="companyId"><a ng-href='#/company_dashboard/{{companyId}}'>Company Dashboard</a></p>
-                <p ng-show="!companyId"><a ng-href='#/create_company'>Create Company</a></p>
-                <!-- ADD COMPANY DASHBOARD LINK (FIGURE OUT HOW TO ROUTE HERE) -->
                 <p ng-show="loggedInUser"><a href='#' ng-click="logout()">Logout</a></p>
             </div>
         </div>
@@ -25,8 +23,6 @@
     </section>
 
     <div ng-view></div>
-
-
 
     <!-- VENDOR -->
     <script src="vendor/angular.js"></script>
@@ -37,10 +33,9 @@
     <script src="vendor/angular-cookies.js"></script>
     <script src="vendor/moment.js"></script>
     <script src="vendor/sha1.js"></script>
-        <!-- D3 -->
-        <script src="vendor/d3.min.js"></script>
-        <script src="vendor/d3pie.min.js"></script>
-
+    <!-- D3 -->
+    <script src="vendor/d3.min.js"></script>
+    <script src="vendor/d3pie.min.js"></script>
 
     <!-- CONTROLLERS -->
     <script src="controllers/init.js"></script>
@@ -54,7 +49,6 @@
     <script src="controllers/main.ctrl.js"></script>
 
     <!-- DIRECTIVES -->
-
     <script src="directives/piechart-modal.dir.js"></script>
 
 </body>

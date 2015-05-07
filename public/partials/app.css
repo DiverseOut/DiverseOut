@@ -1,5 +1,5 @@
 body , html {
-
+  background-color: #e9eaed;
 }
 
 ul, li {
@@ -9,9 +9,12 @@ ul, li {
 }
 
 .navbar {
-  height:50px;
+  background: -webkit-linear-gradient(rgb(0, 102, 180), rgb(42, 121, 181), rgb(0, 102, 180)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(rgb(0, 102, 180), rgb(42, 121, 181), rgb(0, 102, 180)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(rgb(0, 102, 180), rgb(42, 121, 181), rgb(0, 102, 180)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(rgb(0, 102, 180), rgb(42, 121, 181), rgb(0, 102, 180)); /* Standard syntax */
+  height:53px;
   width:100%;
-  background:rgb(0, 145, 255);
   margin:0;
   padding-left:5px;
   padding-right:5px
@@ -19,7 +22,8 @@ ul, li {
 
 .navbar a {
   color:white;
-  text-decoration: none
+  /*color:#e9eaed;*/
+  text-decoration: none;
 }
 
 .navbar h1 {
@@ -29,6 +33,8 @@ ul, li {
   padding:0;
   margin:0;
   color:white;
+  vertical-align: middle;
+  line-height: 50px;
 }
 
 .navbar p {
@@ -47,10 +53,6 @@ ul, li {
   display: none
 }
 
-/*.list-group {
-  width:300px;
-}*/
-
 input[type=checkbox] {
   /* All browsers except webkit*/
   transform: scale(2.5);
@@ -58,14 +60,6 @@ input[type=checkbox] {
   -webkit-transform: scale(2.5);
 
 }
-
-/*.checkbox {
-  vertical-align: middle;
-  line-height: 91px;
-  background-color: blue
-  position: relative;
-  margin:0;
-}*/
 
 .checkbox input[type=checkbox] {
   position: relative;
@@ -77,33 +71,12 @@ input[type=checkbox] {
   margin:10;
 }
 
-
-
-/*
-#signin_signout {
-  border:1px solid black;
-  height:260px;
-  width:420px;
-  margin:0 auto;
-  position:relative;
-}*/
-
-/*.form{
-  border:1px solid black;
-  height:250px;
-  width:200px;
-  display:inline-block;
-  float:left;
-  text-align: center
-}*/
-
 .attribute_list ul {
   padding:0;
 }
 
 .centered {
   text-align: center;
-  /*width:50%;*/
   margin:0 auto;
 }
 
@@ -112,10 +85,14 @@ input[type=checkbox] {
 }
 
 .modal_img {
- /* height:100px;*/
+  border-radius: 5px;
   width:100px;
   display:inline-block;
   margin:5px;
+}
+
+.modal-content {
+  background-color: #e9eaed;
 }
 
 .list-group-item {
@@ -136,6 +113,7 @@ input[type=checkbox] {
 }
 
 .list_img {
+  border-radius: 5px;
   height:50px;
   width:50px;
   display:inline-block;
@@ -173,6 +151,8 @@ input[type=checkbox] {
 
 .buttons p {
   text-align: center;
+  margin:5px;
+  font-weight: bold
 }
 
 .welcome {
@@ -202,24 +182,19 @@ input[type=checkbox] {
 .stat_list li h2 {
   text-align: center;
   margin: 10px 10px;
-  /*padding: 5px;*/
-  /*background: rgb(55, 166, 252);*/
-  /*border-radius: 10px;*/
-  /*color: white;*/
 }
 
 .stat_list li {
-  border: 1px solid gray;
+  border-radius:4px;
+  -webkit-filter: drop-shadow( 5px 5px 5px gray );
+  filter: drop-shadow( 5px 5px 5px gray );
   border-radius: 10px;
-  margin: 10;
+  margin: 15px;
   padding: 10px;
   background:white;
+  /*color:white;*/
   /*height:100%;*/
 }
-
-/*.stat_list {
-  background: rgb(55, 166, 252)
-}*/
 
 .fineprint {
   font-size:0.75em;
@@ -236,21 +211,48 @@ input[type=checkbox] {
   position: relative;
 }
 
-@media (min-width: 992px){
-  .modal-lg {
-    width: 700;
-  }
+.intro_search_box {
+  background: -webkit-linear-gradient(rgb(0, 145, 255), rgb(55, 166, 252), rgb(0, 145, 255)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(rgb(0, 145, 255), rgb(55, 166, 252), rgb(0, 145, 255)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(rgb(0, 145, 255), rgb(55, 166, 252), rgb(0, 145, 255)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(rgb(0, 145, 255), rgb(55, 166, 252), rgb(0, 145, 255)); /* Standard syntax */
+  border-radius: 4px;
+  height:87px;
+  width:70%;
+  margin:auto;
+  color:white;
+  /*font-weight: bold;*/
 }
 
-@media (max-width: 600px){
-  .list-group-item {
-    width: 100%;
-  }
-  .company_button_info {
-    left: 5%;
-    position: relative;
-  }
+.search {
+  height: 100%;
+  width:50%;
+  position: relative;
+  display:inline-block;
+  float:right;
+  padding:10px;
+  font-size: 1em;
+  text-align:center;
 }
+
+.about {
+  height: 100%;
+  width:50%;
+  position: relative;
+  display:inline-block;
+  float:left;
+  padding:10px;
+  font-weight: bold;
+  font-size: 1.25em;
+  text-align:center;
+  padding:17px;
+}
+
+/*.about p:last-child {
+  font-weight: normal;
+  text-align:center;
+  font-size: 0.75em
+}*/
 
 .tooltip {
   background: #eee;
@@ -265,5 +267,21 @@ input[type=checkbox] {
   top: 95px;
   width: 80px;
   z-index: 20000 !important;
+}
+
+@media screen and (min-width: 992px){
+  .modal-lg {
+    width: 700;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .list-group-item {
+    width: 100%;
+  }
+  .company_button_info {
+    left: 5%;
+    position: relative;
+  }
 }
 

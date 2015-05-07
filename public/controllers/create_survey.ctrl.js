@@ -1,7 +1,6 @@
 ourApp.controller("CreateSurveyController", ['$scope', '$http', '$route', '$cookies', '$location', '$routeParams', function($scope, $http, $route, $cookies, $location, $routeParams){
 
   $scope.companyId = parseInt($routeParams.company_id)
-  // $scope.groupsToSend
 
   $http({
     method: 'GET',
@@ -21,7 +20,6 @@ ourApp.controller("CreateSurveyController", ['$scope', '$http', '$route', '$cook
   }
 
   $scope.selectAll = function(){
-    // console.log($('selectAll').checked = true)
     if ($('#selectAll').prop('checked')){
       $('.checkbox input[type=checkbox]').prop('checked',true)
     } else {
@@ -30,18 +28,22 @@ ourApp.controller("CreateSurveyController", ['$scope', '$http', '$route', '$cook
   }
 
   var createSurvey = function(groups){
+
     var surveyDetails = {
       company_id:       $scope.companyId,
       attribute_groups: angular.toJson(groups)
-    }
+    };
+
     $http({
       method: 'POST',
       url: API_ROOT + 'admins/'+$cookies.user_id+'/companies/'+$cookies.company_id+'/surveys',
       params: surveyDetails
     }).success(function(response){
-      console.log(response)
       $location.path('/company_dashboard/'+$scope.companyId)
+    }).error(function(data, status, headers, config){
+      $scope.error = status
     })
-  }
+
+  };
 
 }]);
