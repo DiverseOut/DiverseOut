@@ -11,12 +11,18 @@
 <body>
     <section ng-controller="MainController" id="header">
         <div class="nav_wrapper">
-            <div class='navbar'>
+            <div class="navbar">
                 <h1><a href='#/'>DiverseOut</a></h1>
 
+                <ul class="nav nav-pills">
+                    <li ng-show="!loggedInUser"><a href='#/signin'>Company Login</a></li>
+                    <li ng-show="companyId"><a ng-href='#/company_dashboard/{{companyId}}'>Company Dashboard</a></li>
+                    <li ng-show="loggedInUser"><a href='#' ng-click="logout()">Logout</a></li>
+                </ul>
+<!--
                 <p ng-show="!loggedInUser"><a href='#/signin'>Company Login</a></p>
                 <p ng-show="companyId"><a ng-href='#/company_dashboard/{{companyId}}'>Company Dashboard</a></p>
-                <p ng-show="loggedInUser"><a href='#' ng-click="logout()">Logout</a></p>
+                <p ng-show="loggedInUser"><a href='#' ng-click="logout()">Logout</a></p> -->
             </div>
         </div>
 

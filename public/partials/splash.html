@@ -1,11 +1,11 @@
 <div ng-controller="SplashController">
 
 <div class="intro_search_box">
-  <div class="about">
+  <div>
     <p>Help us gather and spread data to address the tech industry's diversity problems</p>
   </div>
 
-  <div class="search">
+  <div>
     <p>Search for a company or scroll through the list:</p>
     <input type="text" class="form-control" ng-model="searchInput">
   </div>
@@ -16,7 +16,7 @@
       <a data-toggle="modal" data-target=".bs-example-modal-lg" ng-click="getCompanyInfo(company.id)">
         <li class="list-group-item">
           <div class="company_button_info">
-          <img class="list_img" ng-show="company.thumbnail_url !== null" ng-src='{{company.thumbnail_url}}'><h4>{{company.name}}</h4>
+          <img class="list_img" ng-show="company.thumbnail_url !== null" ng-src='{{company.thumbnail_url}}'><h3>{{company.name}}</h3>
           </div>
         </li>
       </a>
@@ -28,7 +28,7 @@
   <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div>
+        <div class="modal-title">
             <img class="modal_img" ng-show="companyInfo.thumbnail_url !== null" ng-src='{{companyInfo.thumbnail_url}}'>
             <div class="company_title">
               <a ng-href="{{companyInfo.website_url}}" target="_blank"><h1>{{companyInfo.name}}</h1></a>
@@ -40,6 +40,7 @@
               <p>Votes: {{companyInfo.votes}}</p>
               <div ng-click="downVote(companyInfo.id)">Downvote</div>
             </div>
+        </div>
 
           <div class="stat_list">
             <ul ng-repeat="stat in companyStats">
@@ -65,8 +66,6 @@
             <p>Last Updated: {{lastUpdate}}</p>
             <a ng-href="{{companyInfo.source}}" target="_blank"><p ng-show="companyInfo.source">Source</p></a>
           </div>
-
-        </div>
 
       </div>
     </div>

@@ -20,11 +20,34 @@ ul, li {
   padding-right:5px
 }
 
+.nav {
+  float:right;
+}
+
+.nav-pills>li>a {
+  border:1px solid white;
+  margin:5px;
+  padding:8px
+}
+
+.nav-pills>li>a:hover {
+  background:#37A6FC;
+}
+
 .navbar a {
   color:white;
+  float:right;
   /*color:#e9eaed;*/
   text-decoration: none;
 }
+
+/*.navbar p {
+  float: right;
+  padding-left: 30px;
+  position: relative;
+  display: inline-block;
+  bottom: -23px;
+}*/
 
 .navbar h1 {
   float:left;
@@ -35,14 +58,6 @@ ul, li {
   color:white;
   vertical-align: middle;
   line-height: 50px;
-}
-
-.navbar p {
-  float: right;
-  padding-left: 30px;
-  position: relative;
-  display: inline-block;
-  bottom: -23px;
 }
 
 .login {
@@ -71,13 +86,37 @@ input[type=checkbox] {
   margin:10;
 }
 
+input.form-control[value="Submit"] {
+  /*border-radius:4px;*/
+  margin-top:10px;
+  margin-bottom:10px;
+  background:#37A6FC;
+  color:white;
+}
+
+.input-group.centered {
+  background: -webkit-linear-gradient(rgb(0, 102, 180), rgb(0, 102, 180)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(rgb(0, 102, 180), rgb(0, 102, 180)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(rgb(0, 102, 180), rgb(0, 102, 180)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(rgb(0, 102, 180), rgb(0, 102, 180)); /* Standard syntax */
+/*0, 145, 255*/
+  border-radius: 4px;
+  color:white;
+  padding:15px;
+}
+
+.input-group.centered a {
+  color:white;
+  padding-top:10px;
+}
+
 .attribute_list ul {
   padding:0;
 }
 
 .centered {
   text-align: center;
-  margin:0 auto;
+  margin:10% auto;
 }
 
 .centered form {
@@ -95,13 +134,19 @@ input[type=checkbox] {
   background-color: #e9eaed;
 }
 
+.modal-title {
+  margin:12px;
+}
+
 .list-group-item {
   margin: 5 auto;
   background-color: #f1f1f1;
   width:70%;
 }
 
-.list-group-item h4{
+.list-group-item h3{
+  margin:5px;
+  vertical-align: middle;
   display:inline-block;
 }
 
@@ -207,52 +252,46 @@ input[type=checkbox] {
 }
 
 .company_button_info {
-  left: 38%;
+  width: 60%;
+  left: 33%;
   position: relative;
 }
 
 .intro_search_box {
-  background: -webkit-linear-gradient(rgb(0, 145, 255), rgb(55, 166, 252), rgb(0, 145, 255)); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(rgb(0, 145, 255), rgb(55, 166, 252), rgb(0, 145, 255)); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(rgb(0, 145, 255), rgb(55, 166, 252), rgb(0, 145, 255)); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(rgb(0, 145, 255), rgb(55, 166, 252), rgb(0, 145, 255)); /* Standard syntax */
+  background: -webkit-linear-gradient(rgb(0, 102, 180), rgb(0, 102, 180)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(rgb(0, 102, 180), rgb(0, 102, 180)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(rgb(0, 102, 180), rgb(0, 102, 180)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(rgb(0, 102, 180), rgb(0, 102, 180)); /* Standard syntax */
+/*0, 145, 255*/
   border-radius: 4px;
-  height:87px;
+  /*height:87px;*/
   width:70%;
-  margin:auto;
+  margin:0 auto;
   color:white;
   /*font-weight: bold;*/
 }
 
-.search {
-  height: 100%;
-  width:50%;
-  position: relative;
+.intro_search_box div {
+  /*height:96px;*/
+  width:49%;
   display:inline-block;
-  float:right;
-  padding:10px;
-  font-size: 1em;
-  text-align:center;
-}
-
-.about {
-  height: 100%;
-  width:50%;
-  position: relative;
-  display:inline-block;
-  float:left;
   padding:10px;
   font-weight: bold;
   font-size: 1.25em;
   text-align:center;
-  padding:17px;
+  vertical-align: middle;
+  padding:10px;
+  margin:0 auto;
 }
 
-/*.about p:last-child {
+.intro_search_box div:first-child p {
+ margin:0;
+}
+
+.intro_search_box div:last-child{
   font-weight: normal;
-  text-align:center;
-  font-size: 0.75em
-}*/
+  font-size: 1em;
+}
 
 .tooltip {
   background: #eee;
@@ -280,8 +319,35 @@ input[type=checkbox] {
     width: 100%;
   }
   .company_button_info {
+    width: 30%;
     left: 5%;
     position: relative;
   }
+  .intro_search_box {
+    width:100%;
+  }
+}
+
+@media screen and (max-device-width: 600px){
+  .list-group-item {
+    width: 100%;
+  }
+  .company_button_info {
+    width: 30%;
+    left: 5%;
+    position: relative;
+  }
+  .intro_search_box {
+    width:100%;
+  }
+  .modal-lg {
+    width: 80%;
+  }
+  .list-group-item h3{
+  font-size: 2em;
+  margin:5px;
+  vertical-align: middle;
+  display:inline-block;
+}
 }
 
