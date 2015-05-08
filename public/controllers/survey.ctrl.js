@@ -5,7 +5,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
 
   // TODO: This uses $http and later $.ajax, which is inconsistent
   // Use only one ajax method!
-  // VC
+
   $http({
     method: 'GET',
     url: API_ROOT + 'companies/'+$scope.companyId+'/surveys/'+$scope.surveyId,
@@ -23,32 +23,30 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
   var submitForm = function(){
 
     // Closure values:
+
     var getValuesOfSelectedAttributes = function(arr){
       // arr is not an array but a jQuery object.
       // As such, we have to create returnArray explicitly as an array
       returnArray = []
-
+      // ToDo: refactor this loop using .filter
       for (var i=0;i<arr.length;i++){
         returnArray[i] = parseInt($(arr[i]).val())
       }
-
       return returnArray
     };
 
-    // declaring (but not defining) employees and attributes
-    // such that they can be modified later
+    // declaring (but not defining) employees and attributes such that they can be modified later
     var employees
     var attributes
 
     return {
 
-      // TODO: the following function is ugly af
+      // TODO: Refactor. The following function is ugly.
       postResponses: function(){
         var postStatusArr = []
 
         function httpPost(parameters){
-          // debugger
-          jQuery.ajax({
+          $.ajax({
             type: 'POST',
             url: API_ROOT + 'companies/'+$scope.companyId+'/responses',
             data: parameters
@@ -56,7 +54,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
             console.log("Post success!")
             postStatusArr.push(response)
           }).fail(function(error) {
-            // TODO: better error handling
+            // TODO: Complete error handling
             console.log("Post fail!")
             postStatusArr.push(error)
           })
@@ -79,8 +77,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
         var deferred = new $.Deferred()
         var objsToPost = [];
 
-        // these were declared within the iife's closure earlier
-        // but not defined. Now that the DOM is loaded we can define them
+        // these were declared within the closure earlier but not defined. Now that the DOM is loaded we can define them
         employees = getValuesOfSelectedAttributes($('.employee-type input[type=checkbox]:checked'));
         attributes = getValuesOfSelectedAttributes($('.list-wrapper option:selected'));
 

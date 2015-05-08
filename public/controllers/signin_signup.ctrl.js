@@ -1,10 +1,7 @@
 ourApp.controller("SignInSignUpController", ['$scope', '$http', '$route', '$cookies', '$location', function($scope, $http, $route, $cookies, $location){
 
-    console.log("hey")
-
     if ($cookies.user_id && $cookies.user_id !== "logged out") {
-      console.log($cookies.user_id)
-      // console.log("you were already logged in!")
+      alert("You are already logged in.")
       $location.path('/')
     }
 
@@ -23,24 +20,21 @@ ourApp.controller("SignInSignUpController", ['$scope', '$http', '$route', '$cook
           url: API_ROOT + '/admins/authenticate',
           params: credentials,
         }).success(function(response, body){
-            console.log(response)
             if (response.errors){
-              console.log(response.errors)
               $scope.error = response.errors
             } else {
               $cookies.user_id = response.id;
               if (typeof response.company_id == "number") {
-                console.log("dash")
                 $cookies.company_id = response.company_id
                 $location.path('/company_dashboard/'+response.company_id)
+                window.location.reload()
               } else {
-                console.log("create")
                 $location.path('/create_company')
+                window.location.reload()
               }
             };
-
         }).error(function(data, status, headers, config){
-          console.log(data,status)
+          $scope.error = response.errors
         })
     };
 
@@ -52,29 +46,26 @@ ourApp.controller("SignInSignUpController", ['$scope', '$http', '$route', '$cook
           email:      $('input[name=email]').val(),
           password_hash:   generatePasswordHash($('input[name=password]').val()),
         }
-        console.log(credentials)
        $http({
           method: 'POST',
           url: API_ROOT + '/admins',
           params: credentials
        }).success(function(response, body){
-          console.log(response)
-            if (response.errors){
-              console.log(response.errors)
-              $scope.error = response.errors
+          if (response.errors){
+            $scope.error = response.errors
+          } else {
+            $cookies.user_id = response.id;
+            if (typeof response.company_id == "number") {
+              $cookies.company_id = response.company_id
+              $location.path('/company_dashboard/'+response.company_id)
+              window.location.reload()
             } else {
-              $cookies.user_id = response.id;
-              if (typeof response.company_id == "number") {
-                console.log("dash")
-                $cookies.company_id = response.company_id
-                $location.path('/company_dashboard/'+response.company_id)
-              } else {
-                console.log("create")
-                $location.path('/create_company')
-              }
-            };
+              $location.path('/create_company')
+              window.location.reload()
+            }
+          };
         }).error(function(data, status, headers, config){
-          console.log(data,status)
+          $scope.error = response.errors
         })
     };
 

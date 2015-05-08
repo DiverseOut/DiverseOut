@@ -1,5 +1,3 @@
-<!-- show all input groups and have check bubbles so they can check the questions they want to ask. -->
-
 <div ng-controller="CreateSurveyController">
   <form ng-submit="getVals()">
     <h4>Choose Questions</h4>
@@ -24,5 +22,6 @@
     <input class="form-control" type="submit" value="Submit">
 
   </form>
+  <p ng-show="error">{{error}}</p>
 
 </div>

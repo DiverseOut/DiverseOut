@@ -1,130 +1,121 @@
-// ourApp.directive("piechartModal", function(){
-//   return {
-//     templateUrl: "/partials/piechart-modal.html"
-//   };
-// });
-
 ourApp.directive('d3piechart', function() {
-    var d = {};
 
-      d.restrict = 'E';
-      d.template = '<div></div>';
-      d.replace = true;
-      d.scope = { dataset : '=' };
+  var d = {};
 
-      d.link = function($scope, element, attrs) {
-        $scope.$watch('dataset', function() {
-          //Width and height
-          var w = 250;
-          var h = 250;
+    d.restrict = 'E';
+    d.template = '<div></div>';
+    d.replace = true;
+    d.scope = { dataset : '=' };
 
-          // Function to filter out data <= 0
-          var posNum = function(element){
-            return element.value > 0
-          };
+    d.link = function($scope, element, attrs) {
+      $scope.$watch('dataset', function() {
+        //Width and height
+        var w = 250;
+        var h = 250;
 
-          var dataset = ($scope.dataset).filter(posNum);
-          var outerRadius = w / 2;
-          var innerRadius = 0;
-          var arc = d3.svg.arc()
-            .innerRadius(innerRadius)
-            .outerRadius(outerRadius);
+        // Function to filter out data <= 0
+        var posNum = function(element){
+          return element.value > 0
+        };
 
-          var pie = d3.layout.pie()
-            .value(function(d){return d.value;})
+        var dataset = ($scope.dataset).filter(posNum);
+        var outerRadius = w / 2;
+        var innerRadius = 0;
+        var arc = d3.svg.arc()
+          .innerRadius(innerRadius)
+          .outerRadius(outerRadius);
 
-          //Easy colors accessible via ordinal scale
-          var color = d3.scale.category20();
+        var pie = d3.layout.pie()
+          .value(function(d){return d.value;})
 
-          //Clears the previous content
-          jQuery(element).html('');
+        //Colors accessible via ordinal scale
+        var color = d3.scale.category20();
 
-          //Create SVG element
-          var svg = d3.select(jQuery(element).get(0))
-            .append("svg")
-            .attr("class", "pie_circle")
-            .attr("width", w)
-            .attr("height", h);
+        //Clears previous content
+        jQuery(element).html('');
 
-          ///tooltip
+        //SVG element
+        var svg = d3.select(jQuery(element).get(0))
+          .append("svg")
+          .attr("class", "pie_circle")
+          .attr("width", w)
+          .attr("height", h);
 
-          var tooltip = d3.select('.pie_circle')
-            .append('div')
-            .attr('class', 'tooltip');
+        /// ToDo: Tooltip. Not working in Bootstrap modal. Why?
+        // var tooltip = d3.select('.pie_circle')
+        //   .append('div')
+        //   .attr('class', 'tooltip');
 
-          tooltip.append('div')
-            .attr('class', 'label');
+        // tooltip.append('div')
+        //   .attr('class', 'label');
 
-          tooltip.append('div')                        // NEW
-            .attr('class', 'count');                   // NEW
+        // tooltip.append('div')                        // NEW
+        //   .attr('class', 'count');                   // NEW
 
-          tooltip.append('div')                        // NEW
-            .attr('class', 'percent');
+        // tooltip.append('div')                        // NEW
+        //   .attr('class', 'percent');
+        ///
 
-          ///
+        //Set up groups
+        var arcs = svg.selectAll("g.arc")
+          .data(pie(dataset))
+          .enter()
+          .append("g")
+          .attr("class", "arc")
+          .attr("transform", "translate(" + outerRadius + "," + outerRadius + ")");
 
-          //Set up groups
-          var arcs = svg.selectAll("g.arc")
-            .data(pie(dataset))
-            .enter()
-            .append("g")
-            .attr("class", "arc")
-            .attr("transform", "translate(" + outerRadius + "," + outerRadius + ")");
+        //Draw arc paths
+        arcs.append("path")
+          .attr("fill", function(d,i) {
+            return color(i);
+          })
+          .attr("d", arc)
 
-          //Draw arc paths
-          arcs.append("path")
-            .attr("fill", function(d,i) {
+        // //ToDo: Tooltip. Not working in Bootstrap modal. Why?
+        // arcs.on('mouseover', function(d) {
+        //   console.log(d)
+        //   tooltip.select('.label').html(d.data.attribute_title)
+        //   tooltip.style('display', 'block');
+        // });
+
+        // arcs.on('mouseout', function() {
+        //   tooltip.style('display', 'none');
+        // });
+
+        //Legend
+        var legend = d3.select(jQuery(element).get(0))
+          .append("svg")
+            .attr("class", "legend")
+          .selectAll("g")
+            .data(dataset)
+          .enter().append("g")
+            .attr("transform", function(d, i) { return "translate(0," + i * 30 + ")"; });
+
+        legend.append("text")
+            .attr("x", 0)
+            .attr("y", 12)
+            .attr("text-align","center")
+            .attr("dy", "0.35em")
+            .text(function(d) { return d.percentage + "%" });
+
+        legend.append("rect")
+            .attr("x", 50)
+            .attr("width", 25)
+            .attr("height", 25)
+            .style("fill", function(d,i) {
               return color(i);
-            })
-            .attr("d", arc)
+            });
 
-          ///////
-          //WHY ISNT TOOLTIP SHOWING UP ON MOUSEOVER?
-          arcs.on('mouseover', function(d) {
-            console.log(d)
-            tooltip.select('.label').html(d.data.attribute_title)
-            tooltip.style('display', 'block');
-          });
+        legend.append("text")
+            .attr("x", 80)
+            .attr("y", 12)
+            .attr("dy", "0.35em")
+            .text(function(d) { return d.attribute_title });
 
-          arcs.on('mouseout', function() {
-            tooltip.style('display', 'none');
-          });
-            ///////
+      }, true);
 
-          //Legend
-          var legend = d3.select(jQuery(element).get(0))
-            .append("svg")
-              .attr("class", "legend")
-            .selectAll("g")
-              .data(dataset)
-            .enter().append("g")
-              .attr("transform", function(d, i) { return "translate(0," + i * 30 + ")"; });
+    };
 
-          legend.append("text")
-              .attr("x", 0)
-              .attr("y", 12)
-              .attr("text-align","center")
-              .attr("dy", "0.35em")
-              .text(function(d) { return d.percentage + "%" });
-
-          legend.append("rect")
-              .attr("x", 50)
-              .attr("width", 25)
-              .attr("height", 25)
-              .style("fill", function(d,i) {
-                return color(i);
-              });
-
-          legend.append("text")
-              .attr("x", 80)
-              .attr("y", 12)
-              .attr("dy", "0.35em")
-              .text(function(d) { return d.attribute_title });
-
-        }, true);
-
-      };
-
-      return d;
+    return d;
 
 });

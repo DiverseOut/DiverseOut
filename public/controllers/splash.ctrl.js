@@ -1,9 +1,7 @@
 ourApp.controller("SplashController", ['$scope', '$http', '$cookies', '$location', function($scope, $http, $cookies, $location){
 
-    // REFACTOR THESE FIRST 2 HTTP CALLS SO DONT HAVE TO CALL THEM EACH TIME TO GET WELCOME GREETING
-
-    $scope.loggedInUser = $cookies.user_id
-    $scope.companyId = $cookies.company_id
+  $scope.loggedInUser = $cookies.user_id
+  $scope.companyId = $cookies.company_id
 
 // CHANGE TO HEROKU URL ONCE API IS LIVE:
   $http.get(API_ROOT).success(function(response){
@@ -27,16 +25,12 @@ ourApp.controller("SplashController", ['$scope', '$http', '$cookies', '$location
     })
   }
 
-  // $scope.getPieDataset = function(response_stats){
-
-  // }
-
   $scope.upVote = function(companyId){
     $http({
       method: "POST",
       url: API_ROOT + "/companies/" + companyId + "/upvote"
     }).success(function(response){
-      // update votes that show below buttons. Also, check rake routes for upvote/downvote
+      // ToDo: Update votes tally that shows below buttons. Also, check rake routes for upvote/downvote
       console.log(response)
     })
   }
@@ -46,7 +40,7 @@ ourApp.controller("SplashController", ['$scope', '$http', '$cookies', '$location
       method: "POST",
       url: API_ROOT + "/companies/" + companyId + "/downvote"
     }).success(function(response){
-      // update votes that show below buttons. Also, check rake routes for upvote/downvote
+      // ToDo: Update votes tally that shows below buttons. Also, check rake routes for upvote/downvote
       console.log(response)
     })
   };
