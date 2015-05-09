@@ -12,6 +12,7 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
   }).success(function(response){
 
     // surveyInfo is used to populate DOM; see partials/survey.html
+    $scope.company = response.company_info
     $scope.surveyInfo = response
 
     // following function is called on form submit

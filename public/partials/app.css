@@ -25,6 +25,10 @@ ul, li {
 }
 
 .nav-pills>li>a {
+  background: -webkit-linear-gradient(rgb(0, 102, 180), rgb(42, 121, 181), rgb(0, 102, 180)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(rgb(0, 102, 180), rgb(42, 121, 181), rgb(0, 102, 180)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(rgb(0, 102, 180), rgb(42, 121, 181), rgb(0, 102, 180)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(rgb(0, 102, 180), rgb(42, 121, 181), rgb(0, 102, 180)); /* Standard syntax */
   border:1px solid white;
   margin:5px;
   padding:8px
@@ -94,6 +98,11 @@ input.form-control[value="Submit"] {
   color:white;
 }
 
+.submit_button {
+  margin:auto;
+  width:70%;
+}
+
 .input-group.centered {
   background: -webkit-linear-gradient(rgb(0, 102, 180), rgb(0, 102, 180)); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(rgb(0, 102, 180), rgb(0, 102, 180)); /* For Opera 11.1 to 12.0 */
@@ -116,7 +125,7 @@ input.form-control[value="Submit"] {
 
 .centered {
   text-align: center;
-  margin:10% auto;
+  margin: auto;
 }
 
 .centered form {
@@ -157,6 +166,11 @@ input.form-control[value="Submit"] {
   font-weight: bold
 }
 
+.attribute_list_selected_item {
+  background:#0066b4;
+  color:white;
+}
+
 .list_img {
   border-radius: 5px;
   height:50px;
@@ -167,11 +181,25 @@ input.form-control[value="Submit"] {
 
 .company_title {
   display:inline-table;
-  margin: 0px 0px 20px 20px;
+  margin: 0px 0px 0px 20px;
+}
+
+.company_title p {
+  text-align: center;
 }
 
 .company_title h1 {
   font-weight: bold;
+}
+
+.company-info-box {
+  border: 1px solid gray;
+  border-radius: 10px;
+  display:inline-block;
+  padding: 10px;
+  margin: 10 auto;
+  background: white;
+  -webkit-filter: drop-shadow( 10px 10px 10px gray );
 }
 
 .nav_wrapper {
@@ -198,6 +226,25 @@ input.form-control[value="Submit"] {
   text-align: center;
   margin:5px;
   font-weight: bold
+}
+
+.dashboard-buttons div {
+  background: linear-gradient(rgb(0, 102, 180), rgb(42, 121, 181), rgb(0, 102, 180));
+  border: 1px solid white;
+  border-radius: 4px;
+  margin: 5px;
+  padding: 8px;
+  color:white;
+  display:inline-block;
+}
+
+.dashboard-buttons div:hover {
+  background:#37A6FC
+}
+
+.dashboard-buttons a {
+  text-decoration: none;
+  color:white;
 }
 
 .welcome {
@@ -293,6 +340,13 @@ input.form-control[value="Submit"] {
   font-size: 1em;
 }
 
+.intro_box_checkbox {
+  margin:3px;
+  float:left;
+  clear: both;
+}
+
+
 .tooltip {
   background: #eee;
   box-shadow: 0 0 5px #999999;
@@ -307,6 +361,9 @@ input.form-control[value="Submit"] {
   width: 80px;
   z-index: 20000 !important;
 }
+
+
+
 
 @media screen and (min-width: 992px){
   .modal-lg {
