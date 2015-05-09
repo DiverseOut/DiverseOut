@@ -1,0 +1,80 @@
+<div ng-controller="EditCompanyController">
+    <div class="input-group centered">
+        <h4>Edit Your Company Info</h4>
+        <form ng-submit="editCompany()" name="editCompanyForm" class="input-group">
+            <input class="form-control" type="name" placeholder="Company Name" name="name" value="{{company.name}}" required>
+            <br>
+            <input class="form-control" type="street_num" placeholder="Street Number" name="street_num" value="{{company.street_num}}" required>
+            <br>
+            <input class="form-control" type="street_num_line_two" placeholder="Suite, Apt, etc." name="street_num_line_two" value="{{company.street_num_line_two}}">
+            <br>
+            <input class="form-control" type="street" placeholder="Street Name" name="street" value="{{company.street}}" required>
+            <br>
+            <input class="form-control" type="city" placeholder="City" name="city" value="{{company.city}}" required>
+            <br>
+            <select class="form-control">
+                <option selected disabled>State</option>
+                <option value="AL" ng-selected="company.state == 'AL'">Alabama</option>
+                <option value="AK" ng-selected="company.state == 'AK'">Alaska</option>
+                <option value="AZ" ng-selected="company.state == 'AZ'">Arizona</option>
+                <option value="AR" ng-selected="company.state == 'AR'">Arkansas</option>
+                <option value="CA" ng-selected="company.state == 'CA'">California</option>
+                <option value="CO" ng-selected="company.state == 'CO'">Colorado</option>
+                <option value="CT" ng-selected="company.state == 'CT'">Connecticut</option>
+                <option value="DE" ng-selected="company.state == 'DE'">Delaware</option>
+                <option value="DC" ng-selected="company.state == 'DC'">District Of Columbia</option>
+                <option value="FL" ng-selected="company.state == 'FL'">Florida</option>
+                <option value="GA" ng-selected="company.state == 'GA'">Georgia</option>
+                <option value="HI" ng-selected="company.state == 'HI'">Hawaii</option>
+                <option value="ID" ng-selected="company.state == 'ID'">Idaho</option>
+                <option value="IL" ng-selected="company.state == 'IL'">Illinois</option>
+                <option value="IN" ng-selected="company.state == 'IN'">Indiana</option>
+                <option value="IA" ng-selected="company.state == 'IA'">Iowa</option>
+                <option value="KS" ng-selected="company.state == 'KS'">Kansas</option>
+                <option value="KY" ng-selected="company.state == 'KY'">Kentucky</option>
+                <option value="LA" ng-selected="company.state == 'LA'">Louisiana</option>
+                <option value="ME" ng-selected="company.state == 'ME'">Maine</option>
+                <option value="MD" ng-selected="company.state == 'MD'">Maryland</option>
+                <option value="MA" ng-selected="company.state == 'MA'">Massachusetts</option>
+                <option value="MI" ng-selected="company.state == 'MI">Michigan</option>
+                <option value="MN" ng-selected="company.state == 'MN'">Minnesota</option>
+                <option value="MS" ng-selected="company.state == 'MS'">Mississippi</option>
+                <option value="MO" ng-selected="company.state == 'MO'">Missouri</option>
+                <option value="MT" ng-selected="company.state == 'MT'">Montana</option>
+                <option value="NE" ng-selected="company.state == 'NE'">Nebraska</option>
+                <option value="NV" ng-selected="company.state == 'NV'">Nevada</option>
+                <option value="NH" ng-selected="company.state == 'NH'">New Hampshire</option>
+                <option value="NJ" ng-selected="company.state == 'NJ'">New Jersey</option>
+                <option value="NM" ng-selected="company.state == 'NM'">New Mexico</option>
+                <option value="NY" ng-selected="company.state == 'NY'">New York</option>
+                <option value="NC" ng-selected="company.state == 'NC'">North Carolina</option>
+                <option value="ND" ng-selected="company.state == 'ND'">North Dakota</option>
+                <option value="OH" ng-selected="company.state == 'OH'">Ohio</option>
+                <option value="OK" ng-selected="company.state == 'OK'">Oklahoma</option>
+                <option value="OR" ng-selected="company.state == 'OR'">Oregon</option>
+                <option value="PA" ng-selected="company.state == 'PA'">Pennsylvania</option>
+                <option value="RI" ng-selected="company.state == 'RI'">Rhode Island</option>
+                <option value="SC" ng-selected="company.state == 'SC'">South Carolina</option>
+                <option value="SD" ng-selected="company.state == 'SD'">South Dakota</option>
+                <option value="TN" ng-selected="company.state == 'TN'">Tennessee</option>
+                <option value="TX" ng-selected="company.state == 'TX'">Texas</option>
+                <option value="UT" ng-selected="company.state == 'UT'">Utah</option>
+                <option value="VT" ng-selected="company.state == 'VT'">Vermont</option>
+                <option value="VA" ng-selected="company.state == 'VA'">Virginia</option>
+                <option value="WA" ng-selected="company.state == 'WA'">Washington</option>
+                <option value="WV" ng-selected="company.state == 'WV'">West Virginia</option>
+                <option value="WI" ng-selected="company.state == 'WI'">Wisconsin</option>
+                <option value="WY" ng-selected="company.state == 'WY'">Wyoming</option>
+            </select>
+
+            <input class="form-control" type="country" placeholder="Country" name="country" value="{{company.country}}" required>
+            <br>
+            <input class="form-control" type="website_url" placeholder="Website URL" name="website_url" value="{{company.website_url}}" required>
+            <br>
+            <input class="form-control" type="thumbnail_url" placeholder="Thumbnail URL" name="thumbnail_url" value="{{company.thumbnail_url}}" required>
+            <br>
+            <input class="form-control" type="submit" value="Submit" ng-disabled="signInForm.$invalid">
+        </form>
+        <p ng-show="error">{{error}}</p>
+    </div>
+</div>

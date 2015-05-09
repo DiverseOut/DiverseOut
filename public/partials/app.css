@@ -346,6 +346,13 @@ input.form-control[value="Submit"] {
   clear: both;
 }
 
+.survey-name {
+  width: 70%;
+  display: block;
+  margin: 10 auto;
+  text-align: center;
+  font-size: 1.5em;
+}
 
 .tooltip {
   background: #eee;
