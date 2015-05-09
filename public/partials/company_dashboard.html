@@ -1,24 +1,38 @@
 <div ng-controller="CompanyDashboardController">
-  <img class="modal_img" ng-show="company.thumbnail_url !== null" ng-src='{{company.thumbnail_url}}'>
 
-  <div class="company_title">
-    <a ng-href="{{company.website_url}}" target="_blank"><h1>{{company.name}}</h1></a>
-    <p>{{company.city}}, {{company.state}}</p>
-    <p><a href="">Edit Company Info</a></p>
+<div style="text-align:center">
+  <div class="company-info-box">
+    <img class="modal_img" ng-show="company.thumbnail_url !== null" ng-src='{{company.thumbnail_url}}'>
+
+    <div class="company_title">
+      <a ng-href="{{company.website_url}}" target="_blank"><h1>{{company.name}}</h1></a>
+      <p>{{company.city}}, {{company.state}}</p>
+    </div>
+  </div>
+</div>
+
+  <div class="centered">
+    <div class="dashboard-buttons">
+      <a href="#/edit_company_info/{{companyId}}"><div>Edit Company Info</div></a>
+      <a ng-href="#/create_survey/{{companyId}}"><div>Create New Survey</div></a>
+    </div>
   </div>
 
   <div ng-show="surveys.length > 0">
-    <h4>Your Company's Past Surveys:</h4>
+    <div class="centered">
+      <h4>Your Company's Past Surveys</h4>
+    </div>
     <ul ng-repeat="survey in surveys" class="list-group">
-      <li class="list-group-item">
-
-        <p>Date Created:</p>
-        <h5><a ng-href="#/companies/{{company.id}}/surveys/{{survey.id}}">
-        {{readableDate(survey.created_at)}}</h5></p><br>
-      <a ng-href="">Edit Survey</a>
-      </li>
+      <a ng-href="#/companies/{{company.id}}/surveys/{{survey.id}}">
+        <li class="list-group-item">
+          <div class="centered">
+          <h3 ng-show="survey.name">{{survey.name}}</h3>
+          <h5>Created {{readableDate(survey.created_at)}}<h5>
+          <!-- <a ng-href="#">Edit Survey</a> -->
+          </div>
+        </li>
+      </a>
     </ul>
   </div>
 
-  <p><a ng-href="#/create_survey/{{companyId}}">Create New Survey</a></p>
 </div>

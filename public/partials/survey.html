@@ -1,17 +1,31 @@
 <div ng-controller="ShowSurveyController">
 
-  <form ng-submit="getVals()">
-    <h4>Select Employee Type</h4>
+<div style="text-align:center">
+  <div class="company-info-box">
+    <img class="modal_img" ng-show="company.thumbnail_url !== null" ng-src='{{company.thumbnail_url}}'>
 
-    <div class="employee-type">
-      <span ng-repeat="type in surveyInfo.employee_types">
-        <input type="checkbox" ng-value="{{type.id}}"><p>{{type.type_name}}</p>
-      </span>
+    <div class="company_title">
+      <a ng-href="{{company.website_url}}" target="_blank"><h1>{{company.name}}</h1></a>
+      <p>{{company.city}}, {{company.state}}</p>
     </div>
+  </div>
+</div>
+
+  <form ng-submit="getVals()">
 
     <div class="list-wrapper">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <h4>Employee Type</h4>
+          <select class="form-control">
+            <option selected>None</option>
+              <option ng-repeat="type in surveyInfo.employee_types" ng-value="{{type.id}}">{{type.type_name}}</option>
+          </select>
+        </li>
+      </ul>
+
       <ul ng-repeat="survey in surveyInfo.attribute_groups" class="list-group">
-        <li class="list-group-item" style="background-color:#f1f1f1">
+        <li class="list-group-item">
           <h4>{{survey.group.group_name}}</h4>
           <select class="form-control">
               <option ng-repeat="attribute in survey.individual_attributes" ng-value="{{attribute.id}}">{{attribute.attribute_name}}</option>
@@ -20,7 +34,7 @@
       </ul>
     </div>
 
-    <input class="form-control" type="submit" value="Submit">
+    <input class="form-control submit_button" type="submit" value="Submit">
   </form>
 
 </div>

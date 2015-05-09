@@ -1,14 +1,26 @@
 <div ng-controller="CreateSurveyController">
   <form ng-submit="getVals()">
-    <h4>Choose Questions</h4>
-    <h5>Select questions to include in your survey. Click each bar to show individual attribute options that your employees will be able to choose from.</h5>
-    <h4><input id="selectAll" type="checkbox" ng-click="selectAll()">Select All</input></h4>
+    <div class="intro_search_box">
+      <div>
+        <h4>Choose Questions</h4>
+        <h5>Select questions to include in your survey. Click each bar to show individual attribute options that your employees will be able to choose from.</h5>
+      </div>
+
+      <div>
+        <h4>
+        <input id="selectAll" type="checkbox" ng-click="selectAll()">Select All Questions</input></h4>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input class="survey-name" type="text" class="form-control" placeholder="Survey Name">
+    </div>
 
     <div class="attribute_list">
     <ul ng-repeat="group in attributeGroups" class="list-group">
-      <li class="list-group-item inline" style="background-color:gainsboro" class="group_title" ng-click="showDetails = ! showDetails">
+      <li class="list-group-item" ng-click="showDetails = ! showDetails">
         <div class="checkbox">
-          <h4><input type="checkbox" ng-value="{{group.group.id}}" ng-click="$event.stopPropagation()">
+          <h4><input type="checkbox" ng-value="{{group.group.id}}" ng-click="changeColor(); $event.stopPropagation()">
           {{group.group.group_name}}
           </input></h4>
         </div>
@@ -19,7 +31,7 @@
     </ul>
     </div>
 
-    <input class="form-control" type="submit" value="Submit">
+    <input class="form-control submit_button" type="submit" value="Submit">
 
   </form>
   <p ng-show="error">{{error}}</p>

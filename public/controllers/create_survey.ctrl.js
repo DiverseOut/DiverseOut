@@ -6,6 +6,7 @@ ourApp.controller("CreateSurveyController", ['$scope', '$http', '$route', '$cook
     method: 'GET',
     url: API_ROOT + 'attribute_groups'
   }).success(function(response){
+    $scope.companyInfo = response.company_info
     $scope.attributeGroups = response
   })
 
@@ -30,9 +31,12 @@ ourApp.controller("CreateSurveyController", ['$scope', '$http', '$route', '$cook
   var createSurvey = function(groups){
 
     var surveyDetails = {
+      name:             $('input[type=text]').val(),
       company_id:       $scope.companyId,
       attribute_groups: angular.toJson(groups)
     };
+
+    console.log(surveyDetails)
 
     $http({
       method: 'POST',
