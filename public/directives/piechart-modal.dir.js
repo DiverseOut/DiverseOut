@@ -41,21 +41,6 @@ ourApp.directive('d3piechart', function() {
           .attr("width", w)
           .attr("height", h);
 
-        /// ToDo: Tooltip. Not working in Bootstrap modal. Why?
-        // var tooltip = d3.select('.pie_circle')
-        //   .append('div')
-        //   .attr('class', 'tooltip');
-
-        // tooltip.append('div')
-        //   .attr('class', 'label');
-
-        // tooltip.append('div')                        // NEW
-        //   .attr('class', 'count');                   // NEW
-
-        // tooltip.append('div')                        // NEW
-        //   .attr('class', 'percent');
-        ///
-
         //Set up groups
         var arcs = svg.selectAll("g.arc")
           .data(pie(dataset))
@@ -64,23 +49,48 @@ ourApp.directive('d3piechart', function() {
           .attr("class", "arc")
           .attr("transform", "translate(" + outerRadius + "," + outerRadius + ")");
 
+        //Radial Gradient effect on pie chart
+        var grads = svg.append("defs").selectAll("radialGradient").data(pie(dataset))
+            .enter().append("radialGradient")
+            .attr("gradientUnits", "userSpaceOnUse")
+            .attr("cx", 0)
+            .attr("cy", 0)
+            .attr("r", "100%")
+            .attr("id", function(d, i) { return "grad" + i; });
+        grads.append("stop").attr("offset", "0%").style("stop-color", function(d, i) { return color(i); });
+        grads.append("stop").attr("offset", "27%").style("stop-color", function(d, i) { return color(i); });
+        grads.append("stop").attr("offset", "150%").style("stop-color", "rgba(0, 0, 0)");
+
         //Draw arc paths
         arcs.append("path")
           .attr("fill", function(d,i) {
-            return color(i);
+            return "url(#grad" + i + ")"
           })
+          // .attr("stroke","white")
           .attr("d", arc)
 
-        // //ToDo: Tooltip. Not working in Bootstrap modal. Why?
-        // arcs.on('mouseover', function(d) {
-        //   console.log(d)
-        //   tooltip.select('.label').html(d.data.attribute_title)
-        //   tooltip.style('display', 'block');
-        // });
+     /// ToDo: Tooltip. Not working in Bootstrap.
+        var tooltip = d3.select('.pie_circle')
+          .append('div')
+          .attr('class', 'tooltip');
 
-        // arcs.on('mouseout', function() {
-        //   tooltip.style('display', 'none');
-        // });
+        tooltip.append('div')
+          .attr('class', 'label');
+
+        tooltip.append('div')
+          .attr('class', 'percentage');
+        ///
+
+        arcs.on('mouseover', function(d) {
+          console.log(d.data)
+          tooltip.select('.label').html("<p>"+d.data.attribute_title+"</p>")
+          tooltip.select('.percentage').html("<p>"+d.data.percentage+"</p>")
+          tooltip.style('display', 'block');
+        });
+
+        arcs.on('mouseout', function() {
+          tooltip.style('display', 'none');
+        });
 
         //Legend
         var legend = d3.select(jQuery(element).get(0))

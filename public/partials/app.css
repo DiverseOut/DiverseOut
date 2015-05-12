@@ -274,6 +274,8 @@ input.form-control[value="Submit"] {
 .stat_list li h2 {
   text-align: center;
   margin: 10px 10px;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
 
 .stat_list li {
@@ -354,11 +356,11 @@ input.form-control[value="Submit"] {
   font-size: 1.5em;
 }
 
-.tooltip {
+/*.tooltip {
   background: #eee;
   box-shadow: 0 0 5px #999999;
   color: #333;
-  display: none;
+  visibility: visible;
   font-size: 12px;
   left: 130px;
   padding: 10px;
@@ -367,9 +369,7 @@ input.form-control[value="Submit"] {
   top: 95px;
   width: 80px;
   z-index: 20000 !important;
-}
-
-
+}*/
 
 
 @media screen and (min-width: 992px){
@@ -407,11 +407,11 @@ input.form-control[value="Submit"] {
   .modal-lg {
     width: 80%;
   }
-  .list-group-item h3{
-  font-size: 2em;
-  margin:5px;
-  vertical-align: middle;
-  display:inline-block;
-}
+  .list-group-item h3 {
+    font-size: 2em;
+    margin:5px;
+    vertical-align: middle;
+    display:inline-block;
+  }
 }
 

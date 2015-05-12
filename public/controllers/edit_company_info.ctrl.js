@@ -16,7 +16,7 @@ ourApp.controller("EditCompanyController", ['$scope', '$http', '$route', '$cooki
     var infoEdit = {
       name:                 $('input[name=name]').val(),
       street_num:           $('input[name=street_num]').val(),
-      street_num_line_two:  $('input[name=street_num_line_two]').val(),
+      street_num_line_2:    $('input[name=street_num_line_2]').val(),
       street:               $('input[name=street]').val(),
       city:                 $('input[name=city]').val(),
       state:                $('option:selected').val(),
