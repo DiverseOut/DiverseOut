@@ -166,6 +166,13 @@ input.form-control[value="Submit"] {
   font-weight: bold
 }
 
+.individual-attributes .list-group-item:hover{
+  background-color: #f1f1f1;
+  text-decoration: none;
+  color:black;
+  font-weight: normal;
+}
+
 .attribute_list_selected_item {
   background:#0066b4;
   color:white;
@@ -356,21 +363,32 @@ input.form-control[value="Submit"] {
   font-size: 1.5em;
 }
 
-/*.tooltip {
-  background: #eee;
+.tooltip {
+  background: rgba(0,0,0,0.5);
   box-shadow: 0 0 5px #999999;
-  color: #333;
-  visibility: visible;
+  color: white;
+  display:none;
   font-size: 12px;
   left: 130px;
-  padding: 10px;
+  padding: 0 18px;
+  border-radius:10px;
   position: absolute;
   text-align: center;
   top: 95px;
-  width: 80px;
+  width: auto;
   z-index: 20000 !important;
-}*/
+  opacity:1;
+}
 
+.tooltip-label {
+  font-size: 1.25em;
+  font-weight: bold;
+  padding-top: 5px;
+}
+
+.percentage {
+  font-weight: bold
+}
 
 @media screen and (min-width: 992px){
   .modal-lg {

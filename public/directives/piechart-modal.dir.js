@@ -34,14 +34,14 @@ ourApp.directive('d3piechart', function() {
         //Clears previous content
         jQuery(element).html('');
 
-        //SVG element
+        //Make SVG element for circle
         var svg = d3.select(jQuery(element).get(0))
           .append("svg")
           .attr("class", "pie_circle")
           .attr("width", w)
-          .attr("height", h);
+          .attr("height", h)
 
-        //Set up groups
+        //Set up data groups
         var arcs = svg.selectAll("g.arc")
           .data(pie(dataset))
           .enter()
@@ -50,7 +50,9 @@ ourApp.directive('d3piechart', function() {
           .attr("transform", "translate(" + outerRadius + "," + outerRadius + ")");
 
         //Radial Gradient effect on pie chart
-        var grads = svg.append("defs").selectAll("radialGradient").data(pie(dataset))
+        var grads = svg.append("defs")
+        .selectAll("radialGradient")
+        .data(pie(dataset))
             .enter().append("radialGradient")
             .attr("gradientUnits", "userSpaceOnUse")
             .attr("cx", 0)
@@ -69,30 +71,29 @@ ourApp.directive('d3piechart', function() {
           // .attr("stroke","white")
           .attr("d", arc)
 
-     /// ToDo: Tooltip. Not working in Bootstrap.
-        var tooltip = d3.select('.pie_circle')
+        // Tooltip
+        var tooltip = d3.select('body')
           .append('div')
           .attr('class', 'tooltip');
-
         tooltip.append('div')
-          .attr('class', 'label');
-
+          .attr('class', 'tooltip-label');
         tooltip.append('div')
           .attr('class', 'percentage');
-        ///
 
-        arcs.on('mouseover', function(d) {
-          console.log(d.data)
-          tooltip.select('.label').html("<p>"+d.data.attribute_title+"</p>")
-          tooltip.select('.percentage').html("<p>"+d.data.percentage+"</p>")
+        arcs.on('mouseover', function(d,i) {
+          tooltip.select('.tooltip-label').html("<p>"+d.data.attribute_title+"</p>")
+          tooltip.select('.percentage').html("<p>"+d.data.percentage+"%</p>")
           tooltip.style('display', 'block');
         });
+
+        arcs.on("mousemove", function(){return tooltip.style("top", (event.pageY-7)+"px").style("left",(event.pageX+7)+"px");})
 
         arcs.on('mouseout', function() {
           tooltip.style('display', 'none');
         });
 
         //Legend
+          //ToDo: Legend not displaying more than five lines
         var legend = d3.select(jQuery(element).get(0))
           .append("svg")
             .attr("class", "legend")

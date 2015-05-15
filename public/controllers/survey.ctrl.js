@@ -6,6 +6,8 @@ ourApp.controller("ShowSurveyController", ['$scope', '$http', '$route', '$cookie
   // TODO: This uses $http and later $.ajax, which is inconsistent
   // Use only one ajax method!
 
+  // TODO: Set cookie when response is submitted so they can't easily submit multiple forms.
+
   $http({
     method: 'GET',
     url: API_ROOT + 'companies/'+$scope.companyId+'/surveys/'+$scope.surveyId,
