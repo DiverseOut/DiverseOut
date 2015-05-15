@@ -11,6 +11,7 @@ Read [more thoughts](http://philril.github.io/blog/c4-tech-issues.html) on why d
 ![diverseout_screenshot](images/DiverseOut_2.png)
 ![diverseout_screenshot](images/DiverseOut_4.png)
 ![diverseout_screenshot](images/DiverseOut_3.png)
+![diverseout_screenshot](images/DiverseOut_5.png)
 
 ##### Local setup instructions:
 - Download and install the [Nodemon](https://github.com/remy/nodemon) npm package.

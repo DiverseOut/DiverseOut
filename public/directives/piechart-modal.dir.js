@@ -34,29 +34,14 @@ ourApp.directive('d3piechart', function() {
         //Clears previous content
         jQuery(element).html('');
 
-        //SVG element
+        //Make SVG element for circle
         var svg = d3.select(jQuery(element).get(0))
           .append("svg")
           .attr("class", "pie_circle")
           .attr("width", w)
-          .attr("height", h);
+          .attr("height", h)
 
-        /// ToDo: Tooltip. Not working in Bootstrap modal. Why?
-        // var tooltip = d3.select('.pie_circle')
-        //   .append('div')
-        //   .attr('class', 'tooltip');
-
-        // tooltip.append('div')
-        //   .attr('class', 'label');
-
-        // tooltip.append('div')                        // NEW
-        //   .attr('class', 'count');                   // NEW
-
-        // tooltip.append('div')                        // NEW
-        //   .attr('class', 'percent');
-        ///
-
-        //Set up groups
+        //Set up data groups
         var arcs = svg.selectAll("g.arc")
           .data(pie(dataset))
           .enter()
@@ -64,25 +49,51 @@ ourApp.directive('d3piechart', function() {
           .attr("class", "arc")
           .attr("transform", "translate(" + outerRadius + "," + outerRadius + ")");
 
+        //Radial Gradient effect on pie chart
+        var grads = svg.append("defs")
+        .selectAll("radialGradient")
+        .data(pie(dataset))
+            .enter().append("radialGradient")
+            .attr("gradientUnits", "userSpaceOnUse")
+            .attr("cx", 0)
+            .attr("cy", 0)
+            .attr("r", "100%")
+            .attr("id", function(d, i) { return "grad" + i; });
+        grads.append("stop").attr("offset", "0%").style("stop-color", function(d, i) { return color(i); });
+        grads.append("stop").attr("offset", "27%").style("stop-color", function(d, i) { return color(i); });
+        grads.append("stop").attr("offset", "150%").style("stop-color", "rgba(0, 0, 0)");
+
         //Draw arc paths
         arcs.append("path")
           .attr("fill", function(d,i) {
-            return color(i);
+            return "url(#grad" + i + ")"
           })
+          // .attr("stroke","white")
           .attr("d", arc)
 
-        // //ToDo: Tooltip. Not working in Bootstrap modal. Why?
-        // arcs.on('mouseover', function(d) {
-        //   console.log(d)
-        //   tooltip.select('.label').html(d.data.attribute_title)
-        //   tooltip.style('display', 'block');
-        // });
+        // Tooltip
+        var tooltip = d3.select('body')
+          .append('div')
+          .attr('class', 'tooltip');
+        tooltip.append('div')
+          .attr('class', 'tooltip-label');
+        tooltip.append('div')
+          .attr('class', 'percentage');
 
-        // arcs.on('mouseout', function() {
-        //   tooltip.style('display', 'none');
-        // });
+        arcs.on('mouseover', function(d,i) {
+          tooltip.select('.tooltip-label').html("<p>"+d.data.attribute_title+"</p>")
+          tooltip.select('.percentage').html("<p>"+d.data.percentage+"%</p>")
+          tooltip.style('display', 'block');
+        });
+
+        arcs.on("mousemove", function(){return tooltip.style("top", (event.pageY-7)+"px").style("left",(event.pageX+7)+"px");})
+
+        arcs.on('mouseout', function() {
+          tooltip.style('display', 'none');
+        });
 
         //Legend
+          //ToDo: Legend not displaying more than five lines
         var legend = d3.select(jQuery(element).get(0))
           .append("svg")
             .attr("class", "legend")
